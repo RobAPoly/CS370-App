@@ -1,4 +1,5 @@
-package com.example.matthew.testinggl;
+//package com.example.matthew.testinggl; dont think this works with our project package
+package cs370.team2;
 
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
@@ -6,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import cs370.team2.R;
 
 public class GameActivity extends AppCompatActivity {
 

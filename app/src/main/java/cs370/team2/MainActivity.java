@@ -1,5 +1,6 @@
 package cs370.team2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -49,5 +50,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void exitButton(View view) {
+    }
+
+    //starts the game when start button is clicked
+    public void startButton(View view) {
+        Intent startIntent = new Intent(this,GameActivity.class);
+        startActivity(startIntent);
     }
 }

@@ -1,4 +1,5 @@
-package com.example.matthew.testinggl;
+//package com.example.matthew.testinggl;dont think this works with our project package
+package cs370.team2;
 
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
