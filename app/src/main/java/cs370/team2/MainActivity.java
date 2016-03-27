@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void exitButton(View view) {
+        finish();
     }
 
     //starts the game when start button is clicked

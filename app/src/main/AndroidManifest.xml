@@ -21,6 +21,7 @@
         <activity
             android:name=".GameActivity"
             android:label="Team2Game"
+            android:theme="@style/AppTheme"
             />
     </application>
 

@@ -20,13 +20,18 @@ public class GameActivity extends AppCompatActivity {
 
         //Makes activity ignore xml file
         //ignoring its layout
+
+
+        // testing on how to combine xml and openGL caleb
         mGLView=new MyGLSurfaceView(this);
-        setContentView(mGLView);
+        //setContentView(mGLView);
+        setContentView(R.layout.content_game);
+        mGLView = (MyGLSurfaceView)findViewById(R.id.glSurfaceViewID);
 
         //think everything below this is garbage
         //except maybe toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+       // setSupportActionBar(toolbar);
 
     }
 
