@@ -20,8 +20,6 @@ public class GameActivity extends AppCompatActivity {
 
         //Makes activity ignore xml file
         //ignoring its layout
-
-
         // testing on how to combine xml and openGL caleb
         mGLView=new MyGLSurfaceView(this);
         //setContentView(mGLView);
