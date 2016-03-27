@@ -25,8 +25,8 @@ public class GameActivity extends AppCompatActivity {
 
         //think everything below this is garbage
         //except maybe toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+       // setSupportActionBar(toolbar);
 
     }
 

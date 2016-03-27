@@ -1,4 +1,4 @@
-package com.example.matthew.testinggl;
+package cs370.team2;
 
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
@@ -8,12 +8,14 @@ import android.util.Log;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import cs370.team2.Square;
+
 /**
  * Created by Matthew on 3/10/2016.
  */
 
 
-public class MyGLRenderer implements GLSurfaceView.Renderer{
+public class MyGLRenderer2 implements GLSurfaceView.Renderer{
     private static final String TAG = "MyGLRenderer";
     private final float[] mMVPMatrix = new float[16];
     private final float[] mViewMatrix = new float[16];
