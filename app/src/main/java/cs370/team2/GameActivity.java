@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import cs370.team2.R;
 
@@ -19,7 +20,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //Makes activity ignore xml file
-        //ignoring its layout
+        //ignoring its layout Im eric
         // testing on how to combine xml and openGL caleb
         mGLView=new MyGLSurfaceView(this);
         //setContentView(mGLView);
