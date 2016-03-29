@@ -56,6 +56,7 @@ public class Square {
     private int mPositionHandle;
     private int mColorHandle;
     private int mMVPMatrixHandle;
+    private boolean checkColor;
 
     // number of coordinates per vertex in this array
     static final int COORDS_PER_VERTEX = 3;

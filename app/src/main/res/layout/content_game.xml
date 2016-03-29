@@ -38,5 +38,24 @@
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/score"
         android:layout_toStartOf="@+id/score" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Level:"
+        android:textColor="@color/white"
+        android:id="@+id/level"
+        android:gravity="left"
+        android:layout_alignParentTop="true"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="#"
+        android:id="@+id/levelnum"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/level"
+        android:layout_toEndOf="@+id/level" />
 
 </RelativeLayout>

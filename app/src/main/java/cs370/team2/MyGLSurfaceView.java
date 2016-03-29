@@ -9,7 +9,7 @@ import android.util.AttributeSet;
  */
 public class MyGLSurfaceView extends GLSurfaceView {
 
-    private final MyGLRenderer2 mRenderer;
+    private final MyGLRenderer mRenderer;
     public MyGLSurfaceView(Context context) {
         super(context);
         //have to choose config
@@ -18,7 +18,7 @@ public class MyGLSurfaceView extends GLSurfaceView {
         setEGLContextClientVersion(2);
 
         // Set the Renderer for drawing on the GLSurfaceView
-        mRenderer= new MyGLRenderer2();
+        mRenderer= new MyGLRenderer();
         setRenderer(mRenderer);
 
         // Render the view only when there is a change in the drawing data
@@ -32,13 +32,24 @@ public class MyGLSurfaceView extends GLSurfaceView {
         setEGLContextClientVersion(2);
 
         // Set the Renderer for drawing on the GLSurfaceView
-        mRenderer= new MyGLRenderer2();
+        mRenderer= new MyGLRenderer();
 
         setRenderer(mRenderer);
 
         // Render the view only when there is a change in the drawing data
-        setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+        //setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+        setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
 
     }
+    public boolean incrementLevel(){
 
+        if(mRenderer.incrementLevel()== true)
+            return true;
+        else
+            return false;
+
+    }
+    public int getScore(){
+        return mRenderer.getScore();
+    }
 }

@@ -4,11 +4,14 @@ import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
 import android.util.Log;
+import android.widget.Toast;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 import cs370.team2.Square;
+
+
 
 /**
  * Created by Matthew on 3/10/2016.
@@ -18,6 +21,8 @@ import cs370.team2.Square;
 public class MyGLRenderer2 implements GLSurfaceView.Renderer{
     private static final String TAG = "MyGLRenderer";
     private final float[] mMVPMatrix = new float[16];
+    private  static int score = 0;
+    private static int testscore =500;
     private final float[] mViewMatrix = new float[16];
     private final float[] mProjectionMatrix = new float[16];
     private Square[] arrSquare= new Square[54];
@@ -381,7 +386,9 @@ public class MyGLRenderer2 implements GLSurfaceView.Renderer{
     @Override
     public void onDrawFrame(GL10 gl) {
         //called on each redraw of the view
-
+        String resp = "You lost";
+        score+=100;
+        float[] b = {.7f,0.7f,0.7f,0.7f};
         int i; //counter for loop (Matthew)
         // Redraw background color
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
@@ -389,12 +396,20 @@ public class MyGLRenderer2 implements GLSurfaceView.Renderer{
         // Set the camera position (View matrix) (Matthew)
         Matrix.setLookAtM(mViewMatrix, 0, 0, 0, -3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
 
+        arrSquare[8].setColor(b);
+        arrSquare[17].setColor(b);
+        arrSquare[26].setColor(b);
+        arrSquare[35].setColor(b);
+        arrSquare[44].setColor(b);
+        arrSquare[53].setColor(b);
+
+
         // Calculate the projection and view transformation
         Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);
         //draws the grid (Matthew)
-        for(i=0;i<arrSquare.length;i++)
-        {
+        for(i=0;i<arrSquare.length;i++) {
             arrSquare[i].draw(mMVPMatrix);
+
         }
     }
 
@@ -420,5 +435,27 @@ public class MyGLRenderer2 implements GLSurfaceView.Renderer{
             Log.e(TAG, glOperation + ": glError " + error);
             throw new RuntimeException(glOperation + ": glError " + error);
         }
+    }
+    public boolean checkColor() {
+        int i;
+        float a[] = { 0.2f, 0.709803922f, 0.898039216f, 1.0f};
+        for (i = 8; i < arrSquare.length; i += 9) {
+            if (arrSquare[i].getColor() != a) {
+                return true;
+            }
+
+        }
+        return false;
+    }
+    public boolean incrementLevel(){
+        if(score >= testscore){
+            testscore+=500;
+            return true;
+        }
+        else
+            return false;
+    }
+    public int getScore(){
+        return score;
     }
 }
