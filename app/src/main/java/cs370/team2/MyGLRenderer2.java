@@ -413,6 +413,13 @@ public class MyGLRenderer2 implements GLSurfaceView.Renderer{
         }
     }
 
+    public boolean onTouch() {
+        int x = getScore();
+        x += 1000000;
+        setScore(x);
+        return true;
+    }
+
 
 
     public static int loadShader(int type, String shaderCode){
@@ -456,6 +463,10 @@ public class MyGLRenderer2 implements GLSurfaceView.Renderer{
             return false;
     }
     public int getScore(){
+        return score;
+    }
+    public int setScore(int x) {
+        score = x;
         return score;
     }
 }

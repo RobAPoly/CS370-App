@@ -70,6 +70,7 @@ public class Square {
 
     private final int vertexStride = COORDS_PER_VERTEX * 4; // 4 bytes per vertex
 
+    // Red Blue Green Opacity
     float color[] = { 0.2f, 0.709803922f, 0.898039216f, 1.0f };
 
     /**

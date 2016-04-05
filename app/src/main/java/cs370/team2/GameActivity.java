@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,7 +21,7 @@ public class GameActivity extends AppCompatActivity {
 
     //private GLSurfaceView mGLView;
     private MyGLSurfaceView testing;
-private int level=0;
+    private int level=0;
     private int score=0;
 
     @Override
@@ -76,6 +77,10 @@ private int level=0;
 
     }
 
+    public boolean onTouch(View v, MotionEvent event) {
+
+        return true;
+    }
 
     //*****Might not want rest of this??
     @Override
