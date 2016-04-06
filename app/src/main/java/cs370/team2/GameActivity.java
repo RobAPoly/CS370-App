@@ -1,4 +1,4 @@
-//package com.example.matthew.testinggl; dont think this works with our project package
+//package com.example.matthew.testinggl; dont think this works with our project pkackage
 package cs370.team2;
 
 import android.opengl.GLSurfaceView;
@@ -43,21 +43,23 @@ public class GameActivity extends AppCompatActivity {
 
             @Override
             //test to update score and level using functions of glrendere
-            public void run() {
+             public void run() {
                 try {
                     while (!isInterrupted()) {
-                        Thread.sleep(1000);
+                        Thread.sleep(1);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
 
-                                    updateLevelNumber(level);
-                                updateScore(score);
+                                updateLevelNumber(level);
+                                updateScore();
+
                                 }
 
                         });
                     }
                 } catch (InterruptedException e) {
+
                 }
                 //TIMER MUST HAVE THREAD FUNCTIONALITY TO PREVENT LOCK
                // testing.gameRunning();
@@ -146,13 +148,23 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-    public void updateScore(int sc){
+    public void updateScore(){
         TextView textView = (TextView) findViewById(R.id.score);
         //sc = testing.getScore();
         textView.setText(Integer.toString(testing.getScore()));
 
     }
 
+    /* public void testColor(){
+
+        if(testing.checkColor()==true){
+            Toast.makeText(this,"U LOSE",Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this,"U Win",Toast.LENGTH_SHORT).show();
+        }
+    }
+*/
 
 
 
