@@ -43,31 +43,31 @@ boolean win = true;
 boolean testBL = false;
 long timeVal = 1000;
 double timeMult = 1;
-    
+
 
     public MyGLSurfaceView(Context context) {
         super(context);
         //have to choose config
-        super.setEGLConfigChooser(8, 8, 8, 8, 16, 0);
+        super.setEGLConfigChooser(8,8,8,8,16,0);
         // Create an OpenGL ES 2.0 context.
         setEGLContextClientVersion(2);
 
         // Set the Renderer for drawing on the GLSurfaceView
-        mRenderer = new MyGLRenderer();
+        mRenderer= new MyGLRenderer();
         setRenderer(mRenderer);
 
         // Render the view only when there is a change in the drawing data
         setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
     }
 
-    public MyGLSurfaceView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        super.setEGLConfigChooser(8, 8, 8, 8, 16, 0);
+    public MyGLSurfaceView(Context context, AttributeSet attrs){
+        super(context,attrs);
+        super.setEGLConfigChooser(8,8,8,8,16,0);
         // Create an OpenGL ES 2.0 context.
         setEGLContextClientVersion(2);
 
         // Set the Renderer for drawing on the GLSurfaceView
-        mRenderer = new MyGLRenderer();
+        mRenderer= new MyGLRenderer();
 
         setRenderer(mRenderer);
 
@@ -76,20 +76,17 @@ double timeMult = 1;
         setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
 
     }
+    public boolean incrementLevel(){
 
-    public boolean incrementLevel() {
-
-        if (mRenderer.incrementLevel() == true)
+        if(mRenderer.incrementLevel()== true)
             return true;
         else
             return false;
 
     }
-
-    public int getScore() {
+    public int getScore(){
         return mRenderer.getScore();
     }
-
     private final float TOUCH_SCALE_FACTOR = 180.0f / 320;
     private float mPreviousX;
     private float mPreviousY;

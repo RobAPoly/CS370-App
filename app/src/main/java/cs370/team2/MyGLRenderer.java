@@ -6,6 +6,8 @@ import android.opengl.Matrix;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.Arrays;
+
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
@@ -379,9 +381,15 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         arrSquare[53]=new Square(coords53);
 
         // Set the background frame color
-        GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-
-
+        GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        float[] b1 = {.7f,0.8f,0.1f,0.7f};
+        arrSquare[8].setColor(b1);
+        arrSquare[1].setColor(b1);
+        arrSquare[17].setColor(b1);
+        arrSquare[26].setColor(b1);
+        arrSquare[35].setColor(b1);
+        arrSquare[44].setColor(b1);
+        arrSquare[53].setColor(b1);
     }
 
     @Override
@@ -400,16 +408,16 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
     public void onDrawFrame(GL10 gl) {
         //called on each redraw of the view
         String resp = "You lost";
-        score+=100;
-        float[] b = {.7f,0.7f,0.7f,0.7f};
+
+        float[] b = {.0f,0.0f,0.0f,0.0f};
         int i; //counter for loop (Matthew)
-        float[] b1 = {.7f,0.8f,0.1f,0.7f};
+
         float[] b2 = {1f,0.8f,0.1f,0.7f};
         float[] b3 = {.7f,1f,0.1f,0.7f};
         float[] b4 = {.7f,0.8f,1f,0.7f};
         float[] b5 = {1f,0.8f,1f,0.7f};
         float[] b6 = {1f,1f,0.1f,0.7f};
-        float[] b7 = {.7f,1f,1f,0.7f};
+        float[] b7 = {.7f,.1f,1f,0.7f};
         float[] b8 = {1f,1f,1f,0.7f};
 
         // Redraw background color
@@ -418,13 +426,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         // Set the camera position (View matrix) (Matthew)
         Matrix.setLookAtM(mViewMatrix, 0, 0, 0, -3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
 
-        arrSquare[0].setColor(b);
-        arrSquare[1].setColor(b1);
-        arrSquare[17].setColor(b2);
-        arrSquare[26].setColor(b3);
-        arrSquare[35].setColor(b4);
-        arrSquare[44].setColor(b5);
-        arrSquare[53].setColor(b6);
+
 
 
         // Calculate the projection and view transformation
@@ -447,14 +449,15 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         int row = 1;
         int squareToChange = 0;
         boolean inBounds = true;
-        float[] b = {.4f,0.7f,0.3f,0.7f};
-        if(x > 984 || x < 90 || y > 1405 || y < 70) {// OUT OF BOUNDS
+        float[] b = {.0f, 0.0f, 0.0f, 0.0f};
+        float[] b1 = {.7f, 0.8f, 0.1f, 0.7f};
+        if (x > 984 || x < 90 || y > 1405 || y < 70) {// OUT OF BOUNDS
             inBounds = false;
             Log.i("OUT", "YOU CLICKED OUT OF BOUNDS.");
         }
 
         //Find the x
-        if(inBounds) {
+        if (inBounds) {
             if (x > 537) { //4, 5, 6
                 if (x > 686) { //5, 6
                     if (x > 835) { //6
@@ -486,11 +489,10 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
                         row = 8;
                         Log.i("H", "Row H");
                     }
-                } else if ( y > 958 ) { // G
+                } else if (y > 958) { // G
                     row = 7;
                     Log.i("G", "Row  G");
-                }
-                else { //F
+                } else { //F
                     row = 6;
                     Log.i("F", "Row F");
                 }
@@ -512,20 +514,21 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
                 Log.i("A", "Row A");
             }
             // Default row 1, A;
-        }
 
-        //Figuring out which box it's going to change
-        for(int i = 1; i < column; i++) {
-            squareToChange += 9;
-        }
-        for(int j = 1; j < row; j++) {
-            squareToChange++;
-        }
 
-        arrSquare[squareToChange].setColor(b);
+            //Figuring out which box it's going to change
+            for (int i = 1; i < column; i++) {
+                squareToChange += 9;
+            }
+            for (int j = 1; j < row; j++) {
+                squareToChange++;
+            }
+            if(Arrays.equals(arrSquare[squareToChange].getColor(),b1)==true) {
+                arrSquare[squareToChange].setColor(b);
+                score += 100;
+            }
+        }
     }
-
-
 
     public static int loadShader(int type, String shaderCode){
 
@@ -548,17 +551,20 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
             throw new RuntimeException(glOperation + ": glError " + error);
         }
     }
+
+    /* useless
     public boolean checkColor() {
         int i;
-        float a[] = { 0.2f, 0.709803922f, 0.898039216f, 1.0f};
+        float a[] = { .0f, 0.0f, 0.0f, 0.0f};
         for (i = 8; i < arrSquare.length; i += 9) {
             if (arrSquare[i].getColor() != a) {
                 return true;
             }
 
+
         }
         return false;
-    }
+    }*/
     public boolean incrementLevel(){
         if(score >= testscore){
             testscore+=500;
