@@ -59,6 +59,8 @@ public class GameActivity extends AppCompatActivity {
                     }
                 } catch (InterruptedException e) {
                 }
+                //TIMER MUST HAVE THREAD FUNCTIONALITY TO PREVENT LOCK
+               // testing.gameRunning();
             }
         };
 

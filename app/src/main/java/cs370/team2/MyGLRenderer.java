@@ -570,4 +570,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
     public int getScore(){
         return score;
     }
+    //TIMER PASS SQUARE ARRAY
+    public Square[] getSquares()
+    {return arrSquare; }
 }
