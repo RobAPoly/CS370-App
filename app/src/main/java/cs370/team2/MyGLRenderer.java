@@ -26,9 +26,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
     private final float[] mViewMatrix = new float[16];
     private final float[] mProjectionMatrix = new float[16];
     private Square[] arrSquare= new Square[54];
+    public int c = 0;
     //squares are .2 by .2 (Matthew)
     // .1 space left on the top and bottom of the screen (Matthew)
     //Row one (Matthew)
+    // x, y, z
     private float coords0[] = {
             0.6f, 0.9f, 0.0f,   // top left
             0.6f, 0.7f, 0.0f,   // bottom left
@@ -310,6 +312,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         //called once to set up the view's environment
 
         //set the coordinates for the squares (Matthew)
+        //Column 1
         arrSquare[0]=new Square(coords0);
         arrSquare[1]=new Square(coords1);
         arrSquare[2]=new Square(coords2);
@@ -319,6 +322,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         arrSquare[6]=new Square(coords6);
         arrSquare[7]=new Square(coords7);
         arrSquare[8]=new Square(coords8);
+
+        //Column 2
         arrSquare[9]=new Square(coords9);
         arrSquare[10]=new Square(coords10);
         arrSquare[11]=new Square(coords11);
@@ -328,6 +333,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         arrSquare[15]=new Square(coords15);
         arrSquare[16]=new Square(coords16);
         arrSquare[17]=new Square(coords17);
+
+        // Column 3
         arrSquare[18]=new Square(coords18);
         arrSquare[19]=new Square(coords19);
         arrSquare[20]=new Square(coords20);
@@ -337,6 +344,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         arrSquare[24]=new Square(coords24);
         arrSquare[25]=new Square(coords25);
         arrSquare[26]=new Square(coords26);
+
+        //Column 4
         arrSquare[27]=new Square(coords27);
         arrSquare[28]=new Square(coords28);
         arrSquare[29]=new Square(coords29);
@@ -346,6 +355,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         arrSquare[33]=new Square(coords33);
         arrSquare[34]=new Square(coords34);
         arrSquare[35]=new Square(coords35);
+
+        //Column 5
         arrSquare[36]=new Square(coords36);
         arrSquare[37]=new Square(coords37);
         arrSquare[38]=new Square(coords38);
@@ -355,6 +366,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         arrSquare[42]=new Square(coords42);
         arrSquare[43]=new Square(coords43);
         arrSquare[44]=new Square(coords44);
+
+        //Column 6
         arrSquare[45]=new Square(coords45);
         arrSquare[46]=new Square(coords46);
         arrSquare[47]=new Square(coords47);
@@ -390,18 +403,28 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         score+=100;
         float[] b = {.7f,0.7f,0.7f,0.7f};
         int i; //counter for loop (Matthew)
+        float[] b1 = {.7f,0.8f,0.1f,0.7f};
+        float[] b2 = {1f,0.8f,0.1f,0.7f};
+        float[] b3 = {.7f,1f,0.1f,0.7f};
+        float[] b4 = {.7f,0.8f,1f,0.7f};
+        float[] b5 = {1f,0.8f,1f,0.7f};
+        float[] b6 = {1f,1f,0.1f,0.7f};
+        float[] b7 = {.7f,1f,1f,0.7f};
+        float[] b8 = {1f,1f,1f,0.7f};
+
         // Redraw background color
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 
         // Set the camera position (View matrix) (Matthew)
         Matrix.setLookAtM(mViewMatrix, 0, 0, 0, -3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
 
-        arrSquare[8].setColor(b);
-        arrSquare[17].setColor(b);
-        arrSquare[26].setColor(b);
-        arrSquare[35].setColor(b);
-        arrSquare[44].setColor(b);
-        arrSquare[53].setColor(b);
+        arrSquare[0].setColor(b);
+        arrSquare[1].setColor(b1);
+        arrSquare[17].setColor(b2);
+        arrSquare[26].setColor(b3);
+        arrSquare[35].setColor(b4);
+        arrSquare[44].setColor(b5);
+        arrSquare[53].setColor(b6);
 
 
         // Calculate the projection and view transformation
@@ -411,6 +434,95 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
             arrSquare[i].draw(mMVPMatrix);
 
         }
+    }
+
+
+
+// <--------------------HERE------------
+
+
+    // Added by Eric Horay I did something!
+    public void ChangeColor(float x, float y) {
+        int column = 1;
+        int row = 1;
+        int squareToChange = 0;
+        boolean inBounds = true;
+        float[] b = {.4f,0.7f,0.3f,0.7f};
+        if(x > 984 || x < 90 || y > 1405 || y < 70) {// OUT OF BOUNDS
+            inBounds = false;
+            Log.i("OUT", "YOU CLICKED OUT OF BOUNDS.");
+        }
+
+        //Find the x
+        if(inBounds) {
+            if (x > 537) { //4, 5, 6
+                if (x > 686) { //5, 6
+                    if (x > 835) { //6
+                        column = 6;
+                        Log.i("6", "Column 6");
+                    } else { //5
+                        column = 5;
+                        Log.i("5", "Column 5");
+                    }
+                } else { //4
+                    column = 4;
+                    Log.i("4", "Column 4");
+                }
+            } else if (x > 239) { //2, 3
+                if (x > 388) {//3
+                    column = 3;
+                    Log.i("3", "Column 3");
+                } else { //2
+                    column = 2;
+                    Log.i("2", "Column 2");
+                }
+            }
+            if (y > 810) { //F, G, H, I
+                if (y > 1106) {//H, I
+                    if (y > 1254) { //I
+                        row = 9;
+                        Log.i("I", "Row I");
+                    } else { // H
+                        row = 8;
+                        Log.i("H", "Row H");
+                    }
+                } else if ( y > 958 ) { // G
+                    row = 7;
+                    Log.i("G", "Row  G");
+                }
+                else { //F
+                    row = 6;
+                    Log.i("F", "Row F");
+                }
+            } else if (y > 514) { //D, E
+                if (y > 662) { //E
+                    row = 5;
+                    Log.i("E", "Row E");
+                } else { //D
+                    row = 4;
+                    Log.i("D", "Row D");
+                }
+            } else if (y > 336) { // C
+                row = 3;
+                Log.i("C", "Row C");
+            } else if (y > 218) { //B
+                row = 2;
+                Log.i("B", "Row B");
+            } else {
+                Log.i("A", "Row A");
+            }
+            // Default row 1, A;
+        }
+
+        //Figuring out which box it's going to change
+        for(int i = 1; i < column; i++) {
+            squareToChange += 9;
+        }
+        for(int j = 1; j < row; j++) {
+            squareToChange++;
+        }
+
+        arrSquare[squareToChange].setColor(b);
     }
 
 
