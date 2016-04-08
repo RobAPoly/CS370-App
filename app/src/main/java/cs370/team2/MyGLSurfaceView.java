@@ -43,6 +43,7 @@ boolean win = true;
 boolean testBL = false;
 long timeVal = 1000;
 double timeMult = 1;
+    
 
     public MyGLSurfaceView(Context context) {
         super(context);
