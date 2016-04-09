@@ -19,17 +19,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        assert fab != null;
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i("nope", "Horray you have clicked and I know I have been clicked");
-            }
-        });
+        //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        //assert fab != null;
+       // fab.setOnClickListener(new View.OnClickListener() {
+        //  public void onClick(View view) {
+              //  Log.i("nope", "Horray you have clicked and I know I have been clicked");
+          //  }
+       //});
     }
 
     @Override
@@ -62,5 +61,6 @@ public class MainActivity extends AppCompatActivity {
     public void startButton(View view) {
         Intent startIntent = new Intent(this,GameActivity.class);
         startActivity(startIntent);
+
     }
 }

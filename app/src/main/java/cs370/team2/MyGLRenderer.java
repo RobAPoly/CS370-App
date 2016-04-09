@@ -385,11 +385,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         float[] b1 = {.7f,0.8f,0.1f,0.7f};
         arrSquare[8].setColor(b1);
         arrSquare[1].setColor(b1);
-        arrSquare[17].setColor(b1);
-        arrSquare[26].setColor(b1);
-        arrSquare[35].setColor(b1);
-        arrSquare[44].setColor(b1);
-        arrSquare[53].setColor(b1);
+        arrSquare[13].setColor(b1);
+        arrSquare[21].setColor(b1);
+        arrSquare[31].setColor(b1);
+        arrSquare[40].setColor(b1);
+        arrSquare[50].setColor(b1);
     }
 
     @Override
@@ -523,6 +523,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
             for (int j = 1; j < row; j++) {
                 squareToChange++;
             }
+            // make sure the square is on
             if(Arrays.equals(arrSquare[squareToChange].getColor(),b1)==true) {
                 arrSquare[squareToChange].setColor(b);
                 score += 100;
@@ -579,4 +580,12 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
     //TIMER PASS SQUARE ARRAY
     public Square[] getSquares()
     {return arrSquare; }
+
+    public boolean ends(){
+        if (score > 500){
+            return true;
+        }
+        return false;
+    }
+
 }

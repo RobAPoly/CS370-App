@@ -1,6 +1,8 @@
 //package com.example.matthew.testinggl; dont think this works with our project pkackage
 package cs370.team2;
 
+import android.app.DialogFragment;
+import android.content.Intent;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +19,8 @@ import java.util.logging.LogRecord;
 
 import cs370.team2.R;
 
-public class GameActivity extends AppCompatActivity {
+//public class GameActivity extends AppCompatActivity {
+    public class GameActivity extends AppCompatActivity implements MyDialogFragment.Communicator{
 
     //private GLSurfaceView mGLView;
     private MyGLSurfaceView testing;
@@ -39,13 +42,20 @@ public class GameActivity extends AppCompatActivity {
        // mGLView = (MyGLSurfaceView)findViewById(R.id.glSurfaceViewID);
         testing = (MyGLSurfaceView)findViewById(R.id.glSurfaceViewID);
         final TextView t = (TextView)findViewById(R.id.levelnum);
-        Thread t1 = new Thread() {
+
+
+        //Thread to update UI with level and score
+        final Thread t1 = new Thread() {
 
             @Override
             //test to update score and level using functions of glrendere
              public void run() {
                 try {
                     while (!isInterrupted()) {
+                        if(testing.end){
+                            interrupt();
+
+                        }
                         Thread.sleep(1);
                         runOnUiThread(new Runnable() {
                             @Override
@@ -54,15 +64,20 @@ public class GameActivity extends AppCompatActivity {
                                 updateLevelNumber(level);
                                 updateScore();
 
+
+
+
                                 }
 
                         });
                     }
                 } catch (InterruptedException e) {
+                    //if the game has ended, show dialog
+                    showDialog();
 
                 }
                 //TIMER MUST HAVE THREAD FUNCTIONALITY TO PREVENT LOCK
-               // testing.gameRunning();
+                //testing.gameRunning();
             }
         };
 
@@ -154,18 +169,20 @@ public class GameActivity extends AppCompatActivity {
         textView.setText(Integer.toString(testing.getScore()));
 
     }
-
-    /* public void testColor(){
-
-        if(testing.checkColor()==true){
-            Toast.makeText(this,"U LOSE",Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Toast.makeText(this,"U Win",Toast.LENGTH_SHORT).show();
-        }
+    // dialog fragment functions
+    public void showDialog(){
+        final DialogFragment myFragment = new MyDialogFragment();
+        myFragment.show(getFragmentManager(), "Game Over");
     }
-*/
 
+    public void MainMenu(){
+
+        finish();
+    }
+
+    public void TryAgain(){
+    recreate();
+    }
 
 
 }

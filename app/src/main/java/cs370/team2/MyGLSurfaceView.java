@@ -1,5 +1,6 @@
 //package com.example.matthew.testinggl;dont think this works with our project package
 package cs370.team2;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
@@ -43,7 +44,7 @@ boolean win = true;
 boolean testBL = false;
 long timeVal = 1000;
 double timeMult = 1;
-
+boolean end = false;
 
     public MyGLSurfaceView(Context context) {
         super(context);
@@ -85,6 +86,9 @@ double timeMult = 1;
 
     }
     public int getScore(){
+        if(mRenderer.ends()){
+            end = true;
+        }
         return mRenderer.getScore();
     }
     private final float TOUCH_SCALE_FACTOR = 180.0f / 320;
@@ -110,7 +114,7 @@ double timeMult = 1;
                 mRenderer.ChangeColor(x, y);
 
                 requestRender();
-        }
+                }
         return true;
     }
 //BEGIN TIMER CODE
@@ -163,6 +167,8 @@ double timeMult = 1;
                 tOneRun = false;
                 tOne.cancel();
                 tOne.purge();
+                end = true;
+
             }
             if (i>0)//if square number is not o change the values
                     offSquare.setColor(a);
@@ -171,4 +177,10 @@ double timeMult = 1;
         }
 
     }
+
+    public void endGame(){
+        end = true;
+    }
+
+
 }
