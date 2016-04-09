@@ -110,7 +110,7 @@ boolean end = false;
 
         Point size=new Point(); //needs to be a Point object for getSize function
         //I think there is something where the getDisplay is not in older versions so we may need to raise the min specs
-        getDisplay().getSize(size); //gives size the x and y maxs of the screen
+        //getDisplay().getSize(size); //gives size the x and y maxs of the screen
         //to get the x and y out of it use "size.x" and "size.y"
 
 
@@ -120,7 +120,7 @@ boolean end = false;
 
                 Log.i("Yes", "Horray you have clicked and I know I have been clicked\n" +
                         "x = " + x + "\ny = " + y + "\n");
-               // mRenderer.ChangeColor(x, y,he,wi);
+               mRenderer.ChangeColor(x, y,he,wi);
 
                 requestRender();
                 }
