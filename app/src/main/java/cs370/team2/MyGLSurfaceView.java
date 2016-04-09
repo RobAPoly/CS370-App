@@ -2,6 +2,7 @@
 package cs370.team2;
 import android.app.DialogFragment;
 import android.content.Context;
+import android.graphics.Point;
 import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -107,12 +108,19 @@ boolean end = false;
         float x = e.getX();
         float y = e.getY();
 
+        Point size=new Point(); //needs to be a Point object for getSize function
+        //I think there is something where the getDisplay is not in older versions so we may need to raise the min specs
+        getDisplay().getSize(size); //gives size the x and y maxs of the screen
+        //to get the x and y out of it use "size.x" and "size.y"
+
+
+
         switch (e.getAction()) {
             case MotionEvent.ACTION_DOWN:
 
                 Log.i("Yes", "Horray you have clicked and I know I have been clicked\n" +
                         "x = " + x + "\ny = " + y + "\n");
-                mRenderer.ChangeColor(x, y,he,wi);
+               // mRenderer.ChangeColor(x, y,he,wi);
 
                 requestRender();
                 }
