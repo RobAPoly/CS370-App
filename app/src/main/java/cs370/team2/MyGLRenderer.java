@@ -1,9 +1,15 @@
 package cs370.team2;
 
+import android.content.Context;
+import android.graphics.Point;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import java.util.Arrays;
@@ -29,6 +35,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
     private final float[] mProjectionMatrix = new float[16];
     private Square[] arrSquare= new Square[54];
     public int c = 0;
+    private int h,w=0;
     //squares are .2 by .2 (Matthew)
     // .1 space left on the top and bottom of the screen (Matthew)
     //Row one (Matthew)
@@ -444,23 +451,37 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
 
 
     // Added by Eric Horay I did something!
-    public void ChangeColor(float x, float y) {
+    public void ChangeColor(float x, float y,int h,int w) {
+
+
+        Log.e("This "," IS "+w+" "+h);
         int column = 1;
         int row = 1;
         int squareToChange = 0;
         boolean inBounds = true;
         float[] b = {.0f, 0.0f, 0.0f, 0.0f};
         float[] b1 = {.7f, 0.8f, 0.1f, 0.7f};
-        if (x > 984 || x < 90 || y > 1405 || y < 70) {// OUT OF BOUNDS
-            inBounds = false;
-            Log.i("OUT", "YOU CLICKED OUT OF BOUNDS.");
-        }
 
+        // this is bad code for testing it doesnt work properly
+        //Eric u can use the the width and height though
+        //i commented out ur previous if statements for testing u can delete mine though
+        int newx = (int)(x-(w*.0833));
+        int newy = (int) (y- (h*.039));
+        int neww = (int)(w-(w*.1666));
+        int newh = (int)(h-(h*.23));
+        Log.i("new stuff is","IS "+newx +" "+ newy +" "+ neww +" "+ newh);
+        if (newx > neww || x < .0833 || newy > newh || y < .039 ){// OUT OF BOUNDS
+           inBounds = false;
+            Log.i("OUT", "YOU CLICKED OUT OF BOUNDS."+ this.w+h);
+        }
         //Find the x
         if (inBounds) {
-            if (x > 537) { //4, 5, 6
-                if (x > 686) { //5, 6
-                    if (x > 835) { //6
+            //if (x > 537*(w/480)) {//4, 5, 6
+                if(newx> neww*.5){
+                //if (x > 686*(w/480)) { //5, 6
+                if(newx > neww*.666){
+                   // if (x > 835*(w/480)) { //6
+                        if(newx>neww*.833){
                         column = 6;
                         Log.i("6", "Column 6");
                     } else { //5
@@ -471,8 +492,10 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
                     column = 4;
                     Log.i("4", "Column 4");
                 }
-            } else if (x > 239) { //2, 3
-                if (x > 388) {//3
+            } //else if (x > 239*(w/1080)) { //2, 3
+            else if(newx > neww* .1666){
+                //if (x > 388*(w/1080)) {//3
+                    if(newx > neww*.333){
                     column = 3;
                     Log.i("3", "Column 3");
                 } else { //2
@@ -480,34 +503,42 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
                     Log.i("2", "Column 2");
                 }
             }
-            if (y > 810) { //F, G, H, I
-                if (y > 1106) {//H, I
-                    if (y > 1254) { //I
+            //if (y > 810*(h/1776)) { //F, G, H, I
+            if(newy>newh * .555){
+                //if (y > 1106*(h/1776)) {//H, I
+                if(newy>newh*.777){
+                    //if (y > 1254*(h/1776)) { //I
+                    if(newy>newh*.888){
                         row = 9;
                         Log.i("I", "Row I");
                     } else { // H
                         row = 8;
                         Log.i("H", "Row H");
                     }
-                } else if (y > 958) { // G
+                }// else if (y > 958*(h/1776)) { // G
+               else if(newy>newh*.666){
                     row = 7;
                     Log.i("G", "Row  G");
                 } else { //F
                     row = 6;
                     Log.i("F", "Row F");
                 }
-            } else if (y > 514) { //D, E
-                if (y > 662) { //E
+            } //else if (y > 514*(h/1776)) { //D, E
+            else if(newy>newh*.333){
+                //if (y > 662*(h/1776)) { //E
+                if(newy>newh*.444){
                     row = 5;
                     Log.i("E", "Row E");
                 } else { //D
                     row = 4;
                     Log.i("D", "Row D");
                 }
-            } else if (y > 336) { // C
+            } //else if (y > 336*(h/1776)) { // C
+            else if(newy>newh*.222){
                 row = 3;
                 Log.i("C", "Row C");
-            } else if (y > 218) { //B
+            } //else if (y > 218*(h/1776)) { //B
+            else if(newy>newh*.111){
                 row = 2;
                 Log.i("B", "Row B");
             } else {
@@ -587,5 +618,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         }
         return false;
     }
+
 
 }

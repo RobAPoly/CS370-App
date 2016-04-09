@@ -38,8 +38,10 @@ import cs370.team2.R;
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
          int height = displaymetrics.heightPixels;
          int width = displaymetrics.widthPixels;
+
         testing = new MyGLSurfaceView(this);
         testing.getit(height,width);
+
         //Makes activity ignore xml file
         //ignoring its layout Im eric
         // testing on how to combine xml and openGL caleb
