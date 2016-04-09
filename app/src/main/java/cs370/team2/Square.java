@@ -72,7 +72,7 @@ public class Square {
     private final int vertexStride = COORDS_PER_VERTEX * 4; // 4 bytes per vertex
 
     // Red Blue Green Opacity
-    float color[] = { 0.0f, 0.0f, 0.0f, .0f };
+    float color[] = { 1.0f, 0.0f, 0.0f, .0f };
 
     /**
      * Sets up the drawing object data for use in an OpenGL ES context.

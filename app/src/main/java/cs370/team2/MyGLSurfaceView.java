@@ -45,6 +45,7 @@ boolean testBL = false;
 long timeVal = 1000;
 double timeMult = 1;
 boolean end = false;
+    public static int he,wi;
 
     public MyGLSurfaceView(Context context) {
         super(context);
@@ -111,7 +112,7 @@ boolean end = false;
 
                 Log.i("Yes", "Horray you have clicked and I know I have been clicked\n" +
                         "x = " + x + "\ny = " + y + "\n");
-                mRenderer.ChangeColor(x, y);
+                mRenderer.ChangeColor(x, y,he,wi);
 
                 requestRender();
                 }
@@ -181,6 +182,9 @@ boolean end = false;
     public void endGame(){
         end = true;
     }
-
+public void getit(int h,int w){
+    he=h;
+    wi=w;
+}
 
 }

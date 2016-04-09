@@ -18,10 +18,10 @@ import android.widget.Toast;
  */
 
 // Tried 2 different fragments/ We can decide what one is best
-public class MyDialogFragment extends DialogFragment implements View.OnClickListener{
-    //public class MyDialogFragment extends DialogFragment {
+//public class MyDialogFragment extends DialogFragment implements View.OnClickListener{
+    public class MyDialogFragment extends DialogFragment {
     @Nullable
-
+/*
     Button tryagain, menu;
     Communicator comm;
 // allows this class and gameactibity to talk to each other
@@ -64,8 +64,8 @@ public class MyDialogFragment extends DialogFragment implements View.OnClickList
         public void TryAgain();
     }
 
+*/
 
-            /*
             Communicator comm;
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
@@ -86,7 +86,7 @@ public class MyDialogFragment extends DialogFragment implements View.OnClickList
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 comm.TryAgain();
-                //dismiss();
+                dismiss();
             }
         });
         AlertDialog dialog = theDialog.create();
@@ -103,5 +103,5 @@ public class MyDialogFragment extends DialogFragment implements View.OnClickList
         super.onAttach(a);
         comm = (Communicator) a;
     }
-    */
+
 }

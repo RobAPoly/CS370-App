@@ -1,11 +1,13 @@
 package cs370.team2;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,14 +23,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
+       // DisplayMetrics displaymetrics = new DisplayMetrics();
+      //  getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+       // final int height = displaymetrics.heightPixels;
+     //  final int width = displaymetrics.widthPixels;
 
-        //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        //assert fab != null;
-       // fab.setOnClickListener(new View.OnClickListener() {
-        //  public void onClick(View view) {
-              //  Log.i("nope", "Horray you have clicked and I know I have been clicked");
+      //  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+       // assert fab != null;
+      // fab.setOnClickListener(new View.OnClickListener() {
+       //  public void onClick(View view) {
+            //    Log.i("nope", "Horray you have clicked and I know I have been clicked "+width + " "+ height);
           //  }
        //});
+
     }
 
     @Override

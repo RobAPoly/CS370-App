@@ -7,6 +7,8 @@ import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -24,6 +26,7 @@ import cs370.team2.R;
 
     //private GLSurfaceView mGLView;
     private MyGLSurfaceView testing;
+
     private int level=0;
     private int score=0;
 
@@ -31,11 +34,18 @@ import cs370.team2.R;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+         int height = displaymetrics.heightPixels;
+         int width = displaymetrics.widthPixels;
+        testing = new MyGLSurfaceView(this);
+        testing.getit(height,width);
         //Makes activity ignore xml file
         //ignoring its layout Im eric
         // testing on how to combine xml and openGL caleb
         //mGLView=new MyGLSurfaceView(this);
-        testing = new MyGLSurfaceView(this);
+
+
         //setContentView(mGLView);
 
         setContentView(R.layout.content_game);
