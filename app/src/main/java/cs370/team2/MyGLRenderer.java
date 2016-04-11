@@ -30,10 +30,22 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
     private static final String TAG = "MyGLRenderer";
     private final float[] mMVPMatrix = new float[16];
     private   int score = 0;
-    private  int testscore =500;
+    private  int testscore = 500;
     private final float[] mViewMatrix = new float[16];
     private final float[] mProjectionMatrix = new float[16];
     private Square[] arrSquare= new Square[54];
+    private int[] arrSquareVal = new int[54];
+
+    private float[] b = {.0f,0.0f,0.0f,0.0f};
+
+    private float[] b2 = {1f,0.8f,0.1f,0.7f};
+    private float[] b3 = {.7f,1f,0.1f,0.7f};
+    private float[] b4 = {.7f,0.8f,1f,0.7f};
+    private float[] b5 = {1f,0.8f,1f,0.7f};
+    private float[] b6 = {1f,1f,0.1f,0.7f};
+    private float[] b7 = {.7f,.1f,1f,0.7f};
+    private float[] b8 = {1f,1f,1f,0.7f};
+
     public int c = 0;
     private int h,w=0;
     //squares are .2 by .2 (Matthew)
@@ -381,22 +393,35 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         arrSquare[46]=new Square(coords46);
         arrSquare[47]=new Square(coords47);
         arrSquare[48]=new Square(coords48);
-        arrSquare[49]=new Square(coords49);
+        arrSquare[49] = new Square(coords49);
         arrSquare[50]=new Square(coords50);
         arrSquare[51]=new Square(coords51);
         arrSquare[52]=new Square(coords52);
         arrSquare[53]=new Square(coords53);
 
+
         // Set the background frame color
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         float[] b1 = {.7f,0.8f,0.1f,0.7f};
-        arrSquare[8].setColor(b1);
         arrSquare[1].setColor(b1);
+        arrSquare[8].setColor(b1);
         arrSquare[13].setColor(b1);
         arrSquare[21].setColor(b1);
         arrSquare[31].setColor(b1);
         arrSquare[40].setColor(b1);
         arrSquare[50].setColor(b1);
+        arrSquare[51].setColor(b1);
+        arrSquare[52].setColor(b1);
+
+        arrSquareVal[1] = 2;
+        arrSquareVal[8] = 2;
+        arrSquareVal[13] = 2;
+        arrSquareVal[21] = 2;
+        arrSquareVal[31] = 2;
+        arrSquareVal[40] = 2;
+        arrSquareVal[50] = 2;
+        arrSquareVal[51] = 2;
+        arrSquareVal[52] = 2;
     }
 
     @Override
@@ -416,26 +441,13 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         //called on each redraw of the view
         String resp = "You lost";
 
-        float[] b = {.0f,0.0f,0.0f,0.0f};
         int i; //counter for loop (Matthew)
-
-        float[] b2 = {1f,0.8f,0.1f,0.7f};
-        float[] b3 = {.7f,1f,0.1f,0.7f};
-        float[] b4 = {.7f,0.8f,1f,0.7f};
-        float[] b5 = {1f,0.8f,1f,0.7f};
-        float[] b6 = {1f,1f,0.1f,0.7f};
-        float[] b7 = {.7f,.1f,1f,0.7f};
-        float[] b8 = {1f,1f,1f,0.7f};
 
         // Redraw background color
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 
         // Set the camera position (View matrix) (Matthew)
         Matrix.setLookAtM(mViewMatrix, 0, 0, 0, -3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
-
-
-
-
         // Calculate the projection and view transformation
         Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);
         //draws the grid (Matthew)
@@ -459,10 +471,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         int row = 1;
         int squareToChange = 0;
         boolean inBounds = true;
+        float[] a = {.5f, .5f, .5f, .5f};
         float[] b = {.0f, 0.0f, 0.0f, 0.0f};
         float[] b1 = {.7f, 0.8f, 0.1f, 0.7f};
 
-        // this is bad code for testing it doesnt work properly
+        //this is bad code for testing it doesnt work properly
         //Eric u can use the the width and height though
         //i commented out ur previous if statements for testing u can delete mine though
         int newx = (int)(x-(w*.0833));
@@ -471,17 +484,17 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         int newh = (int)(h-(h*.23));
         Log.i("new stuff is","IS "+newx +" "+ newy +" "+ neww +" "+ newh);
         if (newx > neww || x < .0833 || newy > newh || y < .039 ){// OUT OF BOUNDS
-           inBounds = false;
+            inBounds = false;
             Log.i("OUT", "YOU CLICKED OUT OF BOUNDS."+ this.w+h);
         }
         //Find the x
         if (inBounds) {
             //if (x > 537*(w/480)) {//4, 5, 6
-                if(newx> neww*.5){
+            if(newx> neww*.5){
                 //if (x > 686*(w/480)) { //5, 6
                 if(newx > neww*.666){
-                   // if (x > 835*(w/480)) { //6
-                        if(newx>neww*.833){
+                    // if (x > 835*(w/480)) { //6
+                    if(newx>neww*.833){
                         column = 6;
                         Log.i("6", "Column 6");
                     } else { //5
@@ -492,10 +505,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
                     column = 4;
                     Log.i("4", "Column 4");
                 }
-            } //else if (x > 239*(w/1080)) { //2, 3
+            }
+            //else if (x > 239*(w/1080)) { //2, 3
             else if(newx > neww* .1666){
                 //if (x > 388*(w/1080)) {//3
-                    if(newx > neww*.333){
+                if(newx > neww*.333){
                     column = 3;
                     Log.i("3", "Column 3");
                 } else { //2
@@ -515,15 +529,17 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
                         row = 8;
                         Log.i("H", "Row H");
                     }
-                }// else if (y > 958*(h/1776)) { // G
-               else if(newy>newh*.666){
+                }
+                // else if (y > 958*(h/1776)) { // G
+                else if(newy>newh*.666){
                     row = 7;
                     Log.i("G", "Row  G");
                 } else { //F
                     row = 6;
                     Log.i("F", "Row F");
                 }
-            } //else if (y > 514*(h/1776)) { //D, E
+            }
+            //else if (y > 514*(h/1776)) { //D, E
             else if(newy>newh*.333){
                 //if (y > 662*(h/1776)) { //E
                 if(newy>newh*.444){
@@ -554,11 +570,30 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
             for (int j = 1; j < row; j++) {
                 squareToChange++;
             }
+
+
+            //if the square is 1, it needs to be clicked
+            if(arrSquareVal[squareToChange] == 1) {
+                arrSquare[squareToChange].setColor(b);
+                score += 50;
+                arrSquareVal[squareToChange] = 0;
+            //if the square is 0, it has been clicked, and clicking it will lower score.
+            } else if (arrSquareVal[squareToChange] == 0) {
+                score -= 50;
+            //if the square is 2, it's special and will grant extra points when pressed!
+            } else if (arrSquareVal[squareToChange] == 2) {
+                arrSquare[squareToChange].setColor(b);
+                score += 100;
+                arrSquareVal[squareToChange] = 0;
+            }
+
             // make sure the square is on
-            if(Arrays.equals(arrSquare[squareToChange].getColor(),b1)==true) {
+            /*
+            if(Arrays.equals(arrSquare[squareToChange].getColor(), b1)) {
                 arrSquare[squareToChange].setColor(b);
                 score += 100;
             }
+            */
         }
     }
 
