@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="When the game starts you must click on each falling block before it reaches the bottom of the screen. If a block reaches the bottom of the screen you lose. For each block you click on you will receive points that will be added onto your score. Good luck and have fun."/>
+
+</LinearLayout>
