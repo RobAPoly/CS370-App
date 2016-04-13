@@ -2,6 +2,7 @@ package cs370.team2;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 
 public class InstructionActivity extends Activity {
 
@@ -12,5 +13,15 @@ public class InstructionActivity extends Activity {
         setContentView(R.layout.instruction_layout);
 
 
+
+    }
+
+    public void MainMenu(){
+
+        finish();
+    }
+
+    public void Back(View view) {
+        finish();
     }
 }
