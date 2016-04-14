@@ -16,35 +16,8 @@ import java.util.TimerTask;
  * Created by Matthew on 3/10/2016.
  */
 public class MyGLSurfaceView extends GLSurfaceView {
-//TIMER VALUES
-Timer tOne = new Timer();
-Timer tTwo = new Timer();
-Timer tThree = new Timer();
-Timer tFour = new Timer();
-Timer tFive = new Timer();
-Timer tEmpty = new Timer();
-//#of BEGINNING VALUE FOR EACH COLUMN
-static int col1Val = 0;
-static int col2Val = 9;
-static int col3Val = 18;
-static int col4Val = 27;
-static int col5Val = 36;
-static int col6Val = 45;
-//TEMP BOOLEAN VLAUES TO TEST IF A TIMER IS SCHEDULED TO RUN
-boolean tOneRun = false;
-boolean tTwoRun = false;
-boolean tThreeRun = false;
-boolean tFourRun = false;
-boolean tFiveRun = false;
-boolean tSixRun = false;
 private final MyGLRenderer mRenderer;
-//Random values
-Random rand = new Random();
-int rVal = 0;
-boolean win = true;
-boolean testBL = false;
-long timeVal = 1000;
-double timeMult = 1;
+
 boolean end = false;
     public static int he,wi;
 
@@ -60,7 +33,9 @@ boolean end = false;
         setRenderer(mRenderer);
 
         // Render the view only when there is a change in the drawing data
-        setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+        //XXXXX_DISABLED_FOR_TIMER_XXXX\\
+
+        //setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
     }
 
     public MyGLSurfaceView(Context context, AttributeSet attrs){
@@ -76,7 +51,7 @@ boolean end = false;
 
         // Render the view only when there is a change in the drawing data
         //setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
-        setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+       // setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
 
     }
     public boolean incrementLevel(){
@@ -88,9 +63,7 @@ boolean end = false;
 
     }
     public int getScore(){
-        if(mRenderer.ends()){
-            end = true;
-        }
+
         return mRenderer.getScore();
     }
     private final float TOUCH_SCALE_FACTOR = 180.0f / 320;
@@ -126,9 +99,39 @@ boolean end = false;
                 }
         return true;
     }
+
+public void getit(int h,int w){
+    he=h;
+    wi=w;
+}
+    public void changeCol(int i, float[] a){
+        mRenderer.setColorN(i,a);}
+   public int getArrVal(int p){
+       return mRenderer.getArrVal(p);
+   }
+    public void setArrVal(int i,int p){
+        mRenderer.setArrVal(i,p);
+    }
+    public void setState(int i,boolean b){
+        mRenderer.setState(i,b);
+    }
+    public boolean getState(int i){
+        return mRenderer.getState(i);
+    }
+}
+
+
+
+
+
+
+
+
+
+
 //BEGIN TIMER CODE
 //TIMER CODE == WORKS BUT NEED TO PASS ARRAY BETER
-    public void gameRunning() {
+ /*   public void gameRunning() {
         int i = 0;
         //dose not work
         Square gSquare[] = mRenderer.getSquares();
@@ -183,16 +186,10 @@ boolean end = false;
                     offSquare.setColor(a);
             onSquare.setColor(a);
             System.out.println("Hereisout :HELLO HERE NOW");
-        }
+    }
 
     }
 
     public void endGame(){
         end = true;
-    }
-public void getit(int h,int w){
-    he=h;
-    wi=w;
-}
-
-}
+    }*/

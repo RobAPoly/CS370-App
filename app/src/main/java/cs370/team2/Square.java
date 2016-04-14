@@ -57,7 +57,7 @@ public class Square {
     private int mPositionHandle;
     private int mColorHandle;
     private int mMVPMatrixHandle;
-    private boolean state;
+    private boolean hit;
 
     // number of coordinates per vertex in this array
     static final int COORDS_PER_VERTEX = 3;
@@ -71,14 +71,14 @@ public class Square {
 
     private final int vertexStride = COORDS_PER_VERTEX * 4; // 4 bytes per vertex
 
-    // Red Blue Green Opacity
-    float color[] = { 1.0f, 0.0f, 0.0f, .0f };
+
+    float color[] = { .0f, 0.0f, 0.0f, .0f }; //BLACK
 
     /**
      * Sets up the drawing object data for use in an OpenGL ES context.
      */
     public Square() {
-        state=false;
+        hit=false;
         // initialize vertex byte buffer for shape coordinates
         ByteBuffer bb = ByteBuffer.allocateDirect(
                 // (# of coordinate values * 4 bytes per float)
@@ -113,7 +113,7 @@ public class Square {
 
 
     public Square(float coords[]){
-        state=false;
+        hit=false;
         //set coords of square
         squareCoords=coords;
         // initialize vertex byte buffer for shape coordinates
@@ -149,7 +149,7 @@ public class Square {
     }
 
     public Square(float coords[], float col[]){
-        state=false;
+        hit=false;
         //set coords of square
         squareCoords=coords;
         //set color of square
@@ -244,12 +244,12 @@ public class Square {
 
     void setState(boolean inState)
     {
-        state=inState;
+        hit=inState;
     }
 
     boolean getState()
     {
-        return state;
+        return hit;
     }
 
 

@@ -403,6 +403,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         // Set the background frame color
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         float[] b1 = {.7f,0.8f,0.1f,0.7f};
+        /*
         arrSquare[1].setColor(b1);
         arrSquare[8].setColor(b1);
         arrSquare[13].setColor(b1);
@@ -413,6 +414,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         arrSquare[51].setColor(b1);
         arrSquare[52].setColor(b1);
 
+
         arrSquareVal[1] = 2;
         arrSquareVal[8] = 2;
         arrSquareVal[13] = 2;
@@ -421,7 +423,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         arrSquareVal[40] = 2;
         arrSquareVal[50] = 2;
         arrSquareVal[51] = 2;
-        arrSquareVal[52] = 2;
+        arrSquareVal[52] = 2; */
     }
 
     @Override
@@ -585,6 +587,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
                 arrSquare[squareToChange].setColor(b);
                 score += 100;
                 arrSquareVal[squareToChange] = 0;
+                arrSquare[squareToChange].setState(true);
             }
 
             // make sure the square is on
@@ -643,15 +646,27 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
     public int getScore(){
         return score;
     }
-    //TIMER PASS SQUARE ARRAY
-    public Square[] getSquares()
-    {return arrSquare; }
-
+/*
     public boolean ends(){
         if (score > 500){
             return true;
         }
         return false;
+    } */
+    //TIMER
+    void setColorN(int square, float[] a)
+    {arrSquare[square].setColor(a);}
+    public int getArrVal(int p){
+        return arrSquareVal[p];
+    }
+    public void setArrVal(int i,int p){
+        arrSquareVal[i] = p;
+    }
+    public void setState(int i,boolean b){
+        arrSquare[i].setState(b);
+    }
+    public boolean getState(int i){
+       return arrSquare[i].getState();
     }
 
 
