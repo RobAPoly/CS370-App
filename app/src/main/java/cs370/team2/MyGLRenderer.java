@@ -643,9 +643,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
     public int getScore(){
         return score;
     }
-    //TIMER PASS SQUARE ARRAY
-    public Square[] getSquares()
-    {return arrSquare; }
 
     public boolean ends(){
         if (score > 500){
@@ -653,6 +650,9 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         }
         return false;
     }
+    //TIMER
+    void setColorN(int square, float[] a)
+    {arrSquare[square].setColor(a);}
 
 
 }

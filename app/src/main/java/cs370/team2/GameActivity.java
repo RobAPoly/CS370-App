@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Random;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 
@@ -23,12 +24,42 @@ import cs370.team2.R;
 
 //public class GameActivity extends AppCompatActivity {
     public class GameActivity extends AppCompatActivity implements MyDialogFragment.Communicator{
-
-    //private GLSurfaceView mGLView;
-    private MyGLSurfaceView testing;
-
     private int level=0;
     private int score=0;
+    //private GLSurfaceView mGLView;
+    private MyGLSurfaceView testing;
+    //#of BEGINNING VALUE FOR EACH COLUMN
+    static int col1Val = 0;
+    static int col2Val = 9;
+    static int col3Val = 18;
+    static int col4Val = 27;
+    static int col5Val = 36;
+    static int col6Val = 45;
+    //TEMP BOOLEAN VLAUES TO TEST IF A TIMER IS SCHEDULED TO RUN
+    boolean tOneRun = false;
+    boolean tTwoRun = false;
+    boolean tThreeRun = false;
+    boolean tFourRun = false;
+    boolean tFiveRun = false;
+    boolean tSixRun = false;
+    //ThreadGroup squareGroup;
+    Thread colOne;
+    Thread colTwo;
+    Thread colThree;
+    Thread colFour;
+    Thread colFive;
+    Thread colSix;
+    //private final MyGLRenderer mRenderer;
+    //Random values
+    Random rand = new Random();
+    //int rVal = 0;
+    boolean win = true;
+    boolean testBL = false;
+    long timeVal = 2000;
+    double timeMult = 1;
+    boolean end = false;
+    int sqMin = 0, sqMax = 3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,8 +119,6 @@ import cs370.team2.R;
                     showDialog();
 
                 }
-                //TIMER MUST HAVE THREAD FUNCTIONALITY TO PREVENT LOCK
-                //testing.gameRunning();
             }
         };
 
@@ -104,37 +133,166 @@ import cs370.team2.R;
             String u = "You lose";
             Toast.makeText(this,u,Toast.LENGTH_LONG).show();
         }
-        */
+        *///BEGIN TIMER STUFF
+        colOne = new Thread() {
+            float a[] = {0.2f, 0.709803922f, 0.898039216f, 1.0f};//BLUE
+            float b[] = {1.2f, 0.0f, 0.0f, 1.0f};//RED
+            public void run() {
 
+                int i = 0;
+                int rVal;
+                while(!interrupted()) {
+                    for(i = col1Val; i<col1Val+9; i++){
+                        try {Thread.sleep(timeVal);}
+                        catch (InterruptedException e)
+                        {e.printStackTrace();}
+                        if(i>0)
+                            testing.changeCol(i-1,b);
+                        testing.changeCol(i,a);
+                    }}}};
+        colTwo = new Thread() {
+            float a[] = {0.2f, 0.709803922f, 0.898039216f, 1.0f};//BLUE
+            float b[] = {1.2f, 0.0f, 0.0f, 1.0f};//RED
+            public void run() {
+                int i = 0;
+                int rVal;
+                while(!interrupted()) {
+                    for(i = col2Val; i<col2Val+9; i++){
+                        try {Thread.sleep(timeVal);}
+                        catch (InterruptedException e)
+                        {e.printStackTrace();}
+                        if(i>0)
+                            testing.changeCol(i-1,b);
+                        testing.changeCol(i,a);
+                    }}}};
+        colThree = new Thread() {
+            float a[] = {0.2f, 0.709803922f, 0.898039216f, 1.0f};//BLUE
+            float b[] = {1.2f, 0.0f, 0.0f, 1.0f};//RED
+            public void run() {
+                int i = 0;
+                int rVal;
+                while(!interrupted()) {
+                    for(i = col3Val; i<col3Val+9; i++){
+                        try {Thread.sleep(timeVal);}
+                        catch (InterruptedException e)
+                        {e.printStackTrace();}
+                        if(i>0)
+                            testing.changeCol(i-1,b);
+                        testing.changeCol(i,a);
+                    }}}};
+        colFour = new Thread() {
+            float a[] = {0.2f, 0.709803922f, 0.898039216f, 1.0f};//BLUE
+            float b[] = {1.2f, 0.0f, 0.0f, 1.0f};//RED
+            public void run() {
+                int i = 0;
+                int rVal;
+                while(!interrupted()) {
+                    for(i = col4Val; i<col4Val+9; i++){
+                        try {Thread.sleep(timeVal);}
+                        catch (InterruptedException e)
+                        {e.printStackTrace();}
+                        if(i>0)
+                            testing.changeCol(i-1,b);
+                        testing.changeCol(i,a);
+                    }}}};
+        colFive = new Thread() {
+            float a[] = {0.2f, 0.709803922f, 0.898039216f, 1.0f};//BLUE
+            float b[] = {1.2f, 0.0f, 0.0f, 1.0f};//RED
+            public void run() {
+                int i = 0;
+                int rVal;
+                while(!interrupted()) {
+                    for(i = col5Val; i<col5Val+9; i++){
+                        try {Thread.sleep(timeVal);}
+                        catch (InterruptedException e)
+                        {e.printStackTrace();}
+                        if(i>0)
+                            testing.changeCol(i-1,b);
+                        testing.changeCol(i,a);
+                    }}}};
+        colSix = new Thread() {
+            float a[] = {0.2f, 0.709803922f, 0.898039216f, 1.0f};//BLUE
+            float b[] = {1.2f, 0.0f, 0.0f, 1.0f};//RED
+            public void run() {
+                int i = 0;
+                int rVal;
+                while(!interrupted()) {
+                    for(i = col6Val; i<col6Val+9; i++){
+                        try {Thread.sleep(timeVal);}
+                        catch (InterruptedException e)
+                        {e.printStackTrace();}
+                        if(i>0)
+                            testing.changeCol(i-1,b);
+                        testing.changeCol(i,a);
+                    }}}};
+       // colOne.start();
+        //colTwo.start();
+        // colThree.start();
+        colFour.start();
+        // colFive.start();
+        //colSix.start();
     }
+//TO DO LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL}
+    //1)Once a block that is colored is touched it should end its
+    //respective col Thread. then these methods shold be used
+    //to continue the game.
+    //2)once a colored block makes it to the end
+    //the game should end
+    //3)increase score only when blu box appears
 
-    public boolean onTouch(View v, MotionEvent event) {
 
-        return true;
-    }
-
-    //*****Might not want rest of this??
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    //Call this method to begin anew block once
+    //an old block is destroyed along with its timer
+    void startSQThread()
+    {int current = activeCount();
+        int randVal= rand.nextInt(6)+1;
+        if (current < sqMax) {
+            if (randVal == 1)
+                colOne.start();
+            else if (randVal == 2)
+                colTwo.start();
+            else if (randVal == 3)
+                colThree.start();
+            else if (randVal == 4)
+                colFour.start();
+            else if (randVal == 5)
+                colFive.start();
+            else
+                colSix.start();
         }
-
-        return super.onOptionsItemSelected(item);
     }
+
+    //used in sq thread
+    int activeCount()
+    {   int onSq = 0;
+        if(colOne.isAlive())
+            onSq++;
+        if(colTwo.isAlive())
+            onSq++;
+        if(colThree.isAlive())
+            onSq++;
+        if(colFour.isAlive())
+            onSq++;
+        if(colFive.isAlive())
+            onSq++;
+        return onSq;
+    }
+
+    //Checks score and increases max accordingly
+    void increaseMax()
+    {for(int i = activeCount(); i<score % 400 && sqMax != 6; i++ ) {sqMax++; }}
+
+    //increase speed of squares by making sleep time less
+    //use This after increaseLevel
+    //changes to denominator can and should be made
+    //hell, any other equation will do
+    void increaseSpeed(){
+        timeVal =timeVal/ (long)1.3;
+    }
+
+
+
+
 
    /* private final void Update() {
         new Thread(new Runnable() {
