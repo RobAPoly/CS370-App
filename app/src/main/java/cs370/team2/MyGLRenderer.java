@@ -637,7 +637,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
     }*/
     public boolean incrementLevel(){
         if(score >= testscore){
-            testscore+=500;
+            testscore= (int) (testscore*1.3);
             return true;
         }
         else

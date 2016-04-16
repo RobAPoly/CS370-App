@@ -55,7 +55,7 @@ import cs370.team2.R;
     //int rVal = 0;
     boolean win = true;
     boolean testBL = false;
-    long timeVal = 2000;
+    double timeVal = 2000;
     double timeMult = 1;
     boolean end = false;
     int sqMin = 0, sqMax = 3;
@@ -142,7 +142,7 @@ import cs370.team2.R;
             public void run() {
                 while(!interrupted()) {
                     for(i = col1Val; i<col1Val+9; i++){
-                        try {Thread.sleep(timeVal);}
+                        try {Thread.sleep((int)timeVal);}
                         catch (InterruptedException e)
                         {e.printStackTrace();}
                         // if the colored square was pressed, restart the loop
@@ -179,7 +179,7 @@ import cs370.team2.R;
             public void run() {
                 while(!interrupted()) {
                     for(i = col2Val; i<col2Val+9; i++){
-                        try {Thread.sleep(timeVal);}
+                        try {Thread.sleep((int)timeVal);}
                         catch (InterruptedException e)
                         {e.printStackTrace();}
                         // if the colored square was pressed, restart the loop
@@ -216,7 +216,7 @@ import cs370.team2.R;
             public void run() {
                 while(!interrupted()) {
                     for(i = col3Val; i<col3Val+9; i++){
-                        try {Thread.sleep(timeVal);}
+                        try {Thread.sleep((int)timeVal);}
                         catch (InterruptedException e)
                         {e.printStackTrace();}
                         // if the colored square was pressed, restart the loop
@@ -254,7 +254,7 @@ import cs370.team2.R;
             public void run() {
                 while(!interrupted()) {
                     for(i = col4Val; i<col4Val+9; i++){
-                        try {Thread.sleep(timeVal);}
+                        try {Thread.sleep((int)timeVal);}
                         catch (InterruptedException e)
                         {e.printStackTrace();}
                         // if the colored square was pressed, restart the loop
@@ -292,7 +292,7 @@ import cs370.team2.R;
             public void run() {
                 while(!interrupted()) {
                     for(i = col5Val; i<col5Val+9; i++){
-                        try {Thread.sleep(timeVal);}
+                        try {Thread.sleep((int)timeVal);}
                         catch (InterruptedException e)
                         {e.printStackTrace();}
                         // if the colored square was pressed, restart the loop
@@ -330,7 +330,7 @@ import cs370.team2.R;
             public void run() {
                 while(!interrupted()) {
                     for(i = col6Val; i<col6Val+9; i++){
-                        try {Thread.sleep(timeVal);}
+                        try {Thread.sleep((int)timeVal);}
                         catch (InterruptedException e)
                         {e.printStackTrace();}
                         // if the colored square was pressed, restart the loop
@@ -350,7 +350,7 @@ import cs370.team2.R;
                             }
                         }
                         else{
-                            // if the colored square is pressed, set the state back to false
+                            // if the colored square is pressed, set the state back to fals
                             testing.setState(i-1,false);
                             i = col6Val;
                             if(level>oldLevel) {
@@ -420,7 +420,7 @@ import cs370.team2.R;
     //changes to denominator can and should be made
     //hell, any other equation will do
     void increaseSpeed(){
-        timeVal = timeVal/ (long)1.8;
+        timeVal = timeVal/ (double)1.1;
 
     }
 
