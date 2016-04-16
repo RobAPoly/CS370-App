@@ -59,6 +59,7 @@ import cs370.team2.R;
     double timeMult = 1;
     boolean end = false;
     int sqMin = 0, sqMax = 3;
+    int oldLevel=0;
 
 
     @Override
@@ -115,7 +116,7 @@ import cs370.team2.R;
                         });
                     }
                 } catch (InterruptedException e) {
-                    //if the game has ended, show dialog
+                    //if the game has ended, show dialogl
                     showDialog();
 
                 }
@@ -136,57 +137,121 @@ import cs370.team2.R;
         *///BEGIN TIMER STUFF
         colOne = new Thread() {
             float a[] = {0.2f, 0.709803922f, 0.898039216f, 1.0f};//BLUE
-            float b[] = {1.2f, 0.0f, 0.0f, 1.0f};//RED
+            float b[] = {.0f, 0.0f, 0.0f, .0f};//BLACK
+            int i;
             public void run() {
-
-                int i = 0;
-                int rVal;
                 while(!interrupted()) {
                     for(i = col1Val; i<col1Val+9; i++){
                         try {Thread.sleep(timeVal);}
                         catch (InterruptedException e)
                         {e.printStackTrace();}
-                        if(i>0)
-                            testing.changeCol(i-1,b);
-                        testing.changeCol(i,a);
+                        // if the colored square was pressed, restart the loop
+                        if(testing.getState(i-1) == false){
+                            if(i>col1Val) {
+                                testing.changeCol(i - 1, b);
+                                // if the square wasnt pressed, set the value of it to 0
+                                testing.setArrVal(i - 1, 0);
+
+                                testing.changeCol(i, a);
+                                // the new colored square will be a valued square
+                                testing.setArrVal(i, 2);
+                                // if colored square reached last square, end the game
+                                if(i == col1Val+8){
+                                    end = true;
+                                    return; }
+                            }
+                        }
+                        else{
+                            // if the colored square is pressed, set the state back to false
+                            testing.setState(i-1,false);
+                            i = col1Val;
+                            if(level>oldLevel) {
+
+
+                            }
+                            //return;
+                        }
                     }}}};
         colTwo = new Thread() {
             float a[] = {0.2f, 0.709803922f, 0.898039216f, 1.0f};//BLUE
-            float b[] = {1.2f, 0.0f, 0.0f, 1.0f};//RED
+            float b[] = {.0f, 0.0f, 0.0f, .0f};//BLACK
+            int i;
             public void run() {
-                int i = 0;
-                int rVal;
                 while(!interrupted()) {
                     for(i = col2Val; i<col2Val+9; i++){
                         try {Thread.sleep(timeVal);}
                         catch (InterruptedException e)
                         {e.printStackTrace();}
-                        if(i>0)
-                            testing.changeCol(i-1,b);
-                        testing.changeCol(i,a);
+                        // if the colored square was pressed, restart the loop
+                        if(testing.getState(i-1) == false){
+                            if(i>col2Val) {
+                                testing.changeCol(i - 1, b);
+                                // if the square wasnt pressed, set the value of it to 0
+                                testing.setArrVal(i - 1, 0);
+                                testing.changeCol(i, a);
+                                // the new colored square will be a valued square
+                                testing.setArrVal(i, 2);
+                                // if colored square reached last square, end the game
+                                if(i == col2Val+8){
+                                    end = true;
+                                    return; }
+                            }
+                        }
+                        else{
+                            // if the colored square is pressed, set the state back to false
+                            testing.setState(i-1,false);
+                            i = col2Val;
+                            if(level>oldLevel){
+                            increaseMax();
+                            increaseSpeed();
+                                oldLevel++;
+                            }
+                            //return;
+                        }
                     }}}};
         colThree = new Thread() {
             float a[] = {0.2f, 0.709803922f, 0.898039216f, 1.0f};//BLUE
-            float b[] = {1.2f, 0.0f, 0.0f, 1.0f};//RED
+            float b[] = {.0f, 0.0f, 0.0f, .0f};//BLACK
+            int i;
             public void run() {
-                int i = 0;
-                int rVal;
                 while(!interrupted()) {
                     for(i = col3Val; i<col3Val+9; i++){
                         try {Thread.sleep(timeVal);}
                         catch (InterruptedException e)
                         {e.printStackTrace();}
-                        if(i>0)
-                            testing.changeCol(i-1,b);
-                        testing.changeCol(i,a);
+                        // if the colored square was pressed, restart the loop
+                        if(testing.getState(i-1) == false){
+                            if(i>col3Val) {
+                                testing.changeCol(i - 1, b);
+                                // if the square wasnt pressed, set the value of it to 0
+                                testing.setArrVal(i - 1, 0);
+
+                                testing.changeCol(i, a);
+                                // the new colored square will be a valued square
+                                testing.setArrVal(i, 2);
+                                // if colored square reached last square, end the game
+                                if(i == col3Val+8){
+                                    end = true;
+                                    return; }
+                            }
+                        }
+                        else{
+                            // if the colored square is pressed, set the state back to false
+                            testing.setState(i-1,false);
+                            i = col3Val;
+                            if(level>oldLevel) {
+                                increaseMax();
+                                increaseSpeed();
+                                oldLevel++;
+                            }
+                            //return;
+                        }
                     }}}};
         colFour = new Thread() {
             float a[] = {0.2f, 0.709803922f, 0.898039216f, 1.0f};//BLUE
             float b[] = {.0f, 0.0f, 0.0f, .0f};//BLACK
+            int i;
             public void run() {
-                int i = 0;
-
-                int rVal;
                 while(!interrupted()) {
                     for(i = col4Val; i<col4Val+9; i++){
                         try {Thread.sleep(timeVal);}
@@ -194,7 +259,7 @@ import cs370.team2.R;
                         {e.printStackTrace();}
                         // if the colored square was pressed, restart the loop
                         if(testing.getState(i-1) == false){
-                        if(i>0) {
+                        if(i>col4Val) {
                             testing.changeCol(i - 1, b);
                             // if the square wasnt pressed, set the value of it to 0
                             testing.setArrVal(i - 1, 0);
@@ -206,58 +271,104 @@ import cs370.team2.R;
                             if(i == col4Val+8){
                                 end = true;
                                 return; }
-                        }}
+                        }
+                        }
                     else{
                             // if the colored square is pressed, set the state back to false
                             testing.setState(i-1,false);
-                            return;
+                            i = col4Val;
+                            if(level>oldLevel) {
+                                increaseMax();
+                                increaseSpeed();
+                                oldLevel++;
+                            }
+                            //return;
                         }
                     }}}};
         colFive = new Thread() {
             float a[] = {0.2f, 0.709803922f, 0.898039216f, 1.0f};//BLUE
-            float b[] = {1.2f, 0.0f, 0.0f, 1.0f};//RED
+            float b[] = {.0f, 0.0f, 0.0f, .0f};//BLACK
+            int i;
             public void run() {
-                int i = 0;
-                int rVal;
                 while(!interrupted()) {
                     for(i = col5Val; i<col5Val+9; i++){
                         try {Thread.sleep(timeVal);}
                         catch (InterruptedException e)
                         {e.printStackTrace();}
-                        if(i>0)
-                            testing.changeCol(i-1,b);
-                        testing.changeCol(i,a);
+                        // if the colored square was pressed, restart the loop
+                        if(testing.getState(i-1) == false){
+                            if(i>col5Val) {
+                                testing.changeCol(i - 1, b);
+                                // if the square wasnt pressed, set the value of it to 0
+                                testing.setArrVal(i - 1, 0);
+
+                                testing.changeCol(i, a);
+                                // the new colored square will be a valued square
+                                testing.setArrVal(i, 2);
+                                // if colored square reached last square, end the game
+                                if(i == col5Val+8){
+                                    end = true;
+                                    return; }
+                            }
+                        }
+                        else{
+                            // if the colored square is pressed, set the state back to false
+                            testing.setState(i-1,false);
+                            i = col5Val;
+                            if(level>oldLevel) {
+                                increaseMax();
+                                increaseSpeed();
+                                oldLevel++;
+                            }
+                            //return;
+                        }
                     }}}};
         colSix = new Thread() {
             float a[] = {0.2f, 0.709803922f, 0.898039216f, 1.0f};//BLUE
-            float b[] = {1.2f, 0.0f, 0.0f, 1.0f};//RED
+            float b[] = {.0f, 0.0f, 0.0f, 0.0f};//BLACK
+            int i;
             public void run() {
-                int i = 0;
-                int rVal;
                 while(!interrupted()) {
                     for(i = col6Val; i<col6Val+9; i++){
                         try {Thread.sleep(timeVal);}
                         catch (InterruptedException e)
                         {e.printStackTrace();}
-                        if(i>0)
-                            testing.changeCol(i-1,b);
-                        testing.changeCol(i,a);
+                        // if the colored square was pressed, restart the loop
+                        if(testing.getState(i-1) == false){
+                            if(i>col6Val) {
+                                testing.changeCol(i - 1, b);
+                                // if the square wasnt pressed, set the value of it to 0
+                                testing.setArrVal(i - 1, 0);
+
+                                testing.changeCol(i, a);
+                                // the new colored square will be a valued square
+                                testing.setArrVal(i, 2);
+                                // if colored square reached last square, end the game
+                                if(i == col6Val+8){
+                                    end = true;
+                                    return; }
+                            }
+                        }
+                        else{
+                            // if the colored square is pressed, set the state back to false
+                            testing.setState(i-1,false);
+                            i = col6Val;
+                            if(level>oldLevel) {
+                                increaseMax();
+                                increaseSpeed();
+                                oldLevel++;
+                            }
+                            //return;
+                        }
                     }}}};
-       // colOne.start();
-        //colTwo.start();
+       //colOne.start();
+        colTwo.start();
         // colThree.start();
-        colFour.start();
-        // colFive.start();
+        //colFour.start();
+         //colFive.start();
         //colSix.start();
     }
 //TO DO LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL}
-    //1)Once a block that is colored is touched it should end its
-    //respective col Thread. then these methods shold be used
-    //to continue the game.
-    //2)once a colored block makes it to the end
-    //the game should end
-    //3)increase score only when blu box appears
-
 
     //Call this method to begin anew block once
     //an old block is destroyed along with its timer
@@ -265,17 +376,18 @@ import cs370.team2.R;
     {int current = activeCount();
         int randVal= rand.nextInt(6)+1;
         if (current < sqMax) {
-            if (randVal == 1)
-                colOne.start();
-            else if (randVal == 2)
+            if (randVal == 1 && !colOne.isAlive()) {
+                //colOne.start();
+            }
+            else if (randVal == 2 && !colTwo.isAlive())
                 colTwo.start();
-            else if (randVal == 3)
+            else if (randVal == 3 && !colThree.isAlive())
                 colThree.start();
-            else if (randVal == 4)
+            else if (randVal == 4 && !colFour.isAlive())
                 colFour.start();
-            else if (randVal == 5)
+            else if (randVal == 5 && !colFive.isAlive())
                 colFive.start();
-            else
+            else if(!colSix.isAlive())
                 colSix.start();
         }
     }
@@ -298,15 +410,25 @@ import cs370.team2.R;
 
     //Checks score and increases max accordingly
     void increaseMax()
-    {for(int i = activeCount(); i<score % 400 && sqMax != 6; i++ ) {sqMax++; }}
+    {for(int i = activeCount(); i<level % 200 && sqMax != 6; i++ ) {sqMax++; }
+        if(activeCount() < sqMax )
+            startSQThread();
+    }
 
     //increase speed of squares by making sleep time less
     //use This after increaseLevel
     //changes to denominator can and should be made
     //hell, any other equation will do
     void increaseSpeed(){
-        timeVal =timeVal/ (long)1.3;
+        timeVal = timeVal/ (long)1.8;
+
     }
+
+    //use this function to reset the counter
+    //it sets the for loop to colXVal
+    //so it begins again at its apropriate vaariable
+    //send block int that has been hit
+
 
 
 
@@ -346,6 +468,7 @@ import cs370.team2.R;
         TextView textView = (TextView) findViewById(R.id.levelnum);
         if(testing.incrementLevel()== true){
             level++;
+
         }
         textView.setText(Integer.toString(ex));
 
