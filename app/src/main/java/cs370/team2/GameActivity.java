@@ -145,9 +145,10 @@ import cs370.team2.R;
                         try {Thread.sleep((int)timeVal);}
                         catch (InterruptedException e)
                         {e.printStackTrace();}
+                        if(i>col1Val) {
                         // if the colored square was pressed, restart the loop
                         if(testing.getState(i-1) == false){
-                            if(i>col1Val) {
+
                                 testing.changeCol(i - 1, b);
                                 // if the square wasnt pressed, set the value of it to 0
                                 testing.setArrVal(i - 1, 0);
@@ -160,16 +161,25 @@ import cs370.team2.R;
                                     end = true;
                                     return; }
                             }
-                        }
-                        else{
+
+                        else {
                             // if the colored square is pressed, set the state back to false
                             testing.setState(i-1,false);
-                            i = col1Val;
+                            i = col1Val-1;
                             if(level>oldLevel) {
-
+                                increaseMax();
+                                increaseSpeed();
+                                oldLevel++;
 
                             }
                             //return;
+                        }}
+                        else
+                        {
+                            testing.changeCol(i, a);
+                            // the new colored square will be a valued square
+                            testing.setArrVal(i, 2);
+
                         }
                     }}}};
         colTwo = new Thread() {
@@ -182,9 +192,10 @@ import cs370.team2.R;
                         try {Thread.sleep((int)timeVal);}
                         catch (InterruptedException e)
                         {e.printStackTrace();}
+                        if(i>col2Val) {
                         // if the colored square was pressed, restart the loop
                         if(testing.getState(i-1) == false){
-                            if(i>col2Val) {
+
                                 testing.changeCol(i - 1, b);
                                 // if the square wasnt pressed, set the value of it to 0
                                 testing.setArrVal(i - 1, 0);
@@ -196,17 +207,23 @@ import cs370.team2.R;
                                     end = true;
                                     return; }
                             }
-                        }
+
                         else{
                             // if the colored square is pressed, set the state back to false
                             testing.setState(i-1,false);
-                            i = col2Val;
+                            i = col2Val-1;
                             if(level>oldLevel){
                             increaseMax();
                             increaseSpeed();
                                 oldLevel++;
                             }
                             //return;
+                        }}
+                        else
+                        {
+                            testing.changeCol(i, a);
+                            // the new colored square will be a valued square
+                            testing.setArrVal(i, 2);
                         }
                     }}}};
         colThree = new Thread() {
@@ -219,9 +236,10 @@ import cs370.team2.R;
                         try {Thread.sleep((int)timeVal);}
                         catch (InterruptedException e)
                         {e.printStackTrace();}
+                        if(i>col3Val) {
                         // if the colored square was pressed, restart the loop
                         if(testing.getState(i-1) == false){
-                            if(i>col3Val) {
+
                                 testing.changeCol(i - 1, b);
                                 // if the square wasnt pressed, set the value of it to 0
                                 testing.setArrVal(i - 1, 0);
@@ -234,17 +252,23 @@ import cs370.team2.R;
                                     end = true;
                                     return; }
                             }
-                        }
+
                         else{
                             // if the colored square is pressed, set the state back to false
                             testing.setState(i-1,false);
-                            i = col3Val;
+                            i = col3Val-1;
                             if(level>oldLevel) {
                                 increaseMax();
                                 increaseSpeed();
                                 oldLevel++;
                             }
                             //return;
+                        }}
+                        else
+                        {
+                            testing.changeCol(i, a);
+                            // the new colored square will be a valued square
+                            testing.setArrVal(i, 2);
                         }
                     }}}};
         colFour = new Thread() {
@@ -257,9 +281,10 @@ import cs370.team2.R;
                         try {Thread.sleep((int)timeVal);}
                         catch (InterruptedException e)
                         {e.printStackTrace();}
+                        if(i>col4Val) {
                         // if the colored square was pressed, restart the loop
                         if(testing.getState(i-1) == false){
-                        if(i>col4Val) {
+
                             testing.changeCol(i - 1, b);
                             // if the square wasnt pressed, set the value of it to 0
                             testing.setArrVal(i - 1, 0);
@@ -272,17 +297,23 @@ import cs370.team2.R;
                                 end = true;
                                 return; }
                         }
-                        }
+
                     else{
                             // if the colored square is pressed, set the state back to false
                             testing.setState(i-1,false);
-                            i = col4Val;
+                            i = col4Val-1;
                             if(level>oldLevel) {
                                 increaseMax();
                                 increaseSpeed();
                                 oldLevel++;
                             }
                             //return;
+                        }}
+                        else
+                        {
+                            testing.changeCol(i, a);
+                            // the new colored square will be a valued square
+                            testing.setArrVal(i, 2);
                         }
                     }}}};
         colFive = new Thread() {
@@ -295,9 +326,10 @@ import cs370.team2.R;
                         try {Thread.sleep((int)timeVal);}
                         catch (InterruptedException e)
                         {e.printStackTrace();}
+                        if(i>col5Val) {
                         // if the colored square was pressed, restart the loop
                         if(testing.getState(i-1) == false){
-                            if(i>col5Val) {
+
                                 testing.changeCol(i - 1, b);
                                 // if the square wasnt pressed, set the value of it to 0
                                 testing.setArrVal(i - 1, 0);
@@ -310,17 +342,24 @@ import cs370.team2.R;
                                     end = true;
                                     return; }
                             }
-                        }
+
                         else{
                             // if the colored square is pressed, set the state back to false
                             testing.setState(i-1,false);
-                            i = col5Val;
+                            i = col5Val-1;
                             if(level>oldLevel) {
                                 increaseMax();
                                 increaseSpeed();
                                 oldLevel++;
                             }
                             //return;
+                        }}
+                        else
+                        {
+                            testing.changeCol(i, a);
+                            // the new colored square will be a valued square
+                            testing.setArrVal(i, 2);
+                            i = col5Val;
                         }
                     }}}};
         colSix = new Thread() {
@@ -333,9 +372,10 @@ import cs370.team2.R;
                         try {Thread.sleep((int)timeVal);}
                         catch (InterruptedException e)
                         {e.printStackTrace();}
+                        if(i>col6Val) {
                         // if the colored square was pressed, restart the loop
                         if(testing.getState(i-1) == false){
-                            if(i>col6Val) {
+
                                 testing.changeCol(i - 1, b);
                                 // if the square wasnt pressed, set the value of it to 0
                                 testing.setArrVal(i - 1, 0);
@@ -348,21 +388,27 @@ import cs370.team2.R;
                                     end = true;
                                     return; }
                             }
-                        }
+
                         else{
                             // if the colored square is pressed, set the state back to fals
                             testing.setState(i-1,false);
-                            i = col6Val;
+                            i = col6Val-1;
                             if(level>oldLevel) {
                                 increaseMax();
                                 increaseSpeed();
                                 oldLevel++;
                             }
                             //return;
+                        }}
+                        else
+                        {
+                            testing.changeCol(i, a);
+                            // the new colored square will be a valued square
+                            testing.setArrVal(i, 2);
                         }
                     }}}};
-       //colOne.start();
-        colTwo.start();
+       colOne.start();
+       // colTwo.start();
         // colThree.start();
         //colFour.start();
          //colFive.start();
@@ -377,7 +423,7 @@ import cs370.team2.R;
         int randVal= rand.nextInt(6)+1;
         if (current < sqMax) {
             if (randVal == 1 && !colOne.isAlive()) {
-                //colOne.start();
+                colOne.start();
             }
             else if (randVal == 2 && !colTwo.isAlive())
                 colTwo.start();
