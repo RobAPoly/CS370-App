@@ -28,6 +28,7 @@ import cs370.team2.R;
     public class GameActivity extends AppCompatActivity implements MyDialogFragment.Communicator{
     private int level=0;
     private int score=0;
+    private int highScore;
     //private GLSurfaceView mGLView;
     private MyGLSurfaceView testing;
     //#of BEGINNING VALUE FOR EACH COLUMN
@@ -82,6 +83,7 @@ import cs370.team2.R;
 
         prefs = this.getSharedPreferences("Scores", Context.MODE_PRIVATE);
         editor = prefs.edit();
+        highScore=prefs.getInt("first",0);
 
         //Makes activity ignore xml file
         //ignoring its layout Im eric
