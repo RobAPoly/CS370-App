@@ -31,6 +31,11 @@
             android:screenOrientation="portrait"
             android:label="Gravity Squares"
             android:theme="@style/Theme.AppCompat"></activity>
+        <activity
+            android:name=".HighScoreActivity"
+            android:screenOrientation="portrait"
+            android:label="Gravity Squares"
+            android:theme="@style/Theme.AppCompat"></activity>
     </application>
 
 </manifest>

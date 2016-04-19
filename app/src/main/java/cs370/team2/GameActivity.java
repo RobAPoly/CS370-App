@@ -2,7 +2,9 @@
 package cs370.team2;
 
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -61,6 +63,10 @@ import cs370.team2.R;
     int sqMin = 0, sqMax = 3;
     int oldLevel=0;
 
+    //For saving scores Matthew
+    SharedPreferences prefs;
+    SharedPreferences.Editor editor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +80,9 @@ import cs370.team2.R;
         testing = new MyGLSurfaceView(this);
         testing.getit(height,width);
 
+        prefs = this.getSharedPreferences("Scores", Context.MODE_PRIVATE);
+        editor = prefs.edit();
+
         //Makes activity ignore xml file
         //ignoring its layout Im eric
         // testing on how to combine xml and openGL caleb
@@ -81,6 +90,11 @@ import cs370.team2.R;
 
 
         //setContentView(mGLView);
+
+
+
+
+
 
         setContentView(R.layout.content_game);
        // mGLView = (MyGLSurfaceView)findViewById(R.id.glSurfaceViewID);
@@ -117,6 +131,50 @@ import cs370.team2.R;
                     }
                 } catch (InterruptedException e) {
                     //if the game has ended, show dialogl
+                    int moveOne,moveTwo;
+
+                    //adds score to high scores if it's high enough
+                    if(testing.getScore()>prefs.getInt("first",0))
+                    {
+                        moveOne=prefs.getInt("first",0);
+                        editor.putInt("first",testing.getScore());
+                        moveTwo=prefs.getInt("second",0);
+                        editor.putInt("second",moveOne);
+                        moveOne=prefs.getInt("third",0);
+                        editor.putInt("third",moveTwo);
+                        moveTwo=prefs.getInt("fourth",0);
+                        editor.putInt("fourth",moveOne);
+                        editor.putInt("fifth",moveTwo);
+                    }
+                    else if(testing.getScore()>prefs.getInt("second",0))
+                    {
+                        moveOne=prefs.getInt("second",0);
+                        editor.putInt("second",testing.getScore());
+                        moveTwo=prefs.getInt("third",0);
+                        editor.putInt("third",moveOne);
+                        moveOne=prefs.getInt("fourth",0);
+                        editor.putInt("fourth",moveTwo);
+                        editor.putInt("fifth",moveOne);
+                    }
+                    else if(testing.getScore()>prefs.getInt("third",0))
+                    {
+                        moveOne=prefs.getInt("third",0);
+                        editor.putInt("third",testing.getScore());
+                        moveTwo=prefs.getInt("fourth",0);
+                        editor.putInt("fourth",moveOne);
+                        editor.putInt("fifth",moveTwo);
+                    }
+                    else if(testing.getScore()>prefs.getInt("fourth",0))
+                    {
+                        moveOne=prefs.getInt("fourth",0);
+                        editor.putInt("fourth",testing.getScore());
+                        editor.putInt("fifth",moveOne);
+                    }
+                    else if(testing.getScore()>prefs.getInt("fifth",0))
+                    {
+                        editor.putInt("fifth",testing.getScore());
+                    }
+                    editor.commit();
                     showDialog();
 
                 }

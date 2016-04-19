@@ -76,4 +76,9 @@ public class MainActivity extends AppCompatActivity {
         Intent startIntent = new Intent(this,InstructionActivity.class);
         startActivity(startIntent);
     }
+
+    public void highScoreButton(View view) {
+        Intent startIntent = new Intent(this,HighScoreActivity.class);
+        startActivity(startIntent);
+    }
 }

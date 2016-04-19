@@ -33,7 +33,7 @@
         android:layout_below="@+id/textView"
         android:layout_alignLeft="@+id/button"
         android:layout_alignStart="@+id/button"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="30dp"
         android:onClick="startButton"/>
 
     <Button
@@ -41,8 +41,8 @@
         android:layout_height="wrap_content"
         android:text="Exit"
         android:id="@+id/button"
-        android:layout_marginTop="54dp"
-        android:layout_below="@+id/button3"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/button4"
         android:layout_centerHorizontal="true"
         android:onClick="exitButton"/>
     <!-- instruction button -->
@@ -51,10 +51,20 @@
         android:layout_height="wrap_content"
         android:text="Instructions"
         android:id="@+id/button3"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="30dp"
         android:layout_below="@+id/button2"
         android:layout_centerHorizontal="true"
         android:onClick="instructionButton"/>
+    <!--High score button-->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="High Scores"
+        android:id="@+id/button4"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/button3"
+        android:layout_centerHorizontal="true"
+        android:onClick="highScoreButton"/>
 
 
 </RelativeLayout>
