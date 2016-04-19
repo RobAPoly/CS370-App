@@ -58,4 +58,25 @@
         android:layout_toRightOf="@+id/level"
         android:layout_toEndOf="@+id/level" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="High Score:"
+        android:textColor="@color/white"
+        android:id="@+id/highscore"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="9"
+        android:textColor="@color/white"
+        android:id="@+id/highScorenum"
+        android:layout_below="@+id/frameLayout"
+        android:layout_toRightOf="@+id/highscore"
+        android:layout_toEndOf="@+id/highscore" />
+
 </RelativeLayout>
