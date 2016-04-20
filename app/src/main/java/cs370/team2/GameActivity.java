@@ -103,6 +103,8 @@ import cs370.team2.R;
         testing = (MyGLSurfaceView)findViewById(R.id.glSurfaceViewID);
         final TextView t = (TextView)findViewById(R.id.levelnum);
 
+        TextView highScore = (TextView) findViewById(R.id.highScorenum);
+        highScore.setText(Integer.toString(prefs.getInt("first",0)));
 
         //Thread to update UI with level and score
         final Thread t1 = new Thread() {
@@ -207,7 +209,7 @@ import cs370.team2.R;
                         {e.printStackTrace();}
                         if(i>col1Val) {
                         // if the colored square was pressed, restart the loop
-                        if(testing.getState(i-1) == false){
+                        if(!testing.getState(i-1)){
 
                                 testing.changeCol(i - 1, b);
                                 // if the square wasnt pressed, set the value of it to 0
@@ -254,7 +256,7 @@ import cs370.team2.R;
                         {e.printStackTrace();}
                         if(i>col2Val) {
                         // if the colored square was pressed, restart the loop
-                        if(testing.getState(i-1) == false){
+                        if(!testing.getState(i-1)){
 
                                 testing.changeCol(i - 1, b);
                                 // if the square wasnt pressed, set the value of it to 0
@@ -298,7 +300,7 @@ import cs370.team2.R;
                         {e.printStackTrace();}
                         if(i>col3Val) {
                         // if the colored square was pressed, restart the loop
-                        if(testing.getState(i-1) == false){
+                        if(!testing.getState(i-1)){
 
                                 testing.changeCol(i - 1, b);
                                 // if the square wasnt pressed, set the value of it to 0
@@ -343,7 +345,7 @@ import cs370.team2.R;
                         {e.printStackTrace();}
                         if(i>col4Val) {
                         // if the colored square was pressed, restart the loop
-                        if(testing.getState(i-1) == false){
+                        if(!testing.getState(i-1)){
 
                             testing.changeCol(i - 1, b);
                             // if the square wasnt pressed, set the value of it to 0
@@ -388,7 +390,7 @@ import cs370.team2.R;
                         {e.printStackTrace();}
                         if(i>col5Val) {
                         // if the colored square was pressed, restart the loop
-                        if(testing.getState(i-1) == false){
+                        if(!testing.getState(i-1)){
 
                                 testing.changeCol(i - 1, b);
                                 // if the square wasnt pressed, set the value of it to 0
@@ -434,7 +436,7 @@ import cs370.team2.R;
                         {e.printStackTrace();}
                         if(i>col6Val) {
                         // if the colored square was pressed, restart the loop
-                        if(testing.getState(i-1) == false){
+                        if(!testing.getState(i-1)){
 
                                 testing.changeCol(i - 1, b);
                                 // if the square wasnt pressed, set the value of it to 0
@@ -526,7 +528,7 @@ import cs370.team2.R;
     //changes to denominator can and should be made
     //hell, any other equation will do
     void increaseSpeed(){
-        timeVal = timeVal/ (double)1.1;
+        timeVal = timeVal/ 1.1;
 
     }
 
@@ -572,7 +574,7 @@ import cs370.team2.R;
     //private final Handler mHandler = new Handler();
     public void updateLevelNumber(int ex){
         TextView textView = (TextView) findViewById(R.id.levelnum);
-        if(testing.incrementLevel()== true){
+        if(testing.incrementLevel()){
             level++;
 
         }
