@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -63,7 +64,8 @@ import cs370.team2.R;
     boolean end = false;
     int sqMin = 0, sqMax = 3;
     int oldLevel=0;
-
+    boolean ended=false;
+    final static DialogFragment myFragment = new MyDialogFragment();
     //For saving scores Matthew
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
@@ -179,6 +181,7 @@ import cs370.team2.R;
                         editor.putInt("fifth",testing.getScore());
                     }
                     editor.commit();
+                    if(!ended)
                     showDialog();
 
                 }
@@ -590,7 +593,7 @@ import cs370.team2.R;
     }
     // dialog fragment functions
     public void showDialog(){
-        final DialogFragment myFragment = new MyDialogFragment();
+
         myFragment.show(getFragmentManager(), "Game Over");
     }
 
@@ -601,6 +604,16 @@ import cs370.team2.R;
 
     public void TryAgain(){
     recreate();
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            ended=true;
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 
