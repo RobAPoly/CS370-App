@@ -531,7 +531,18 @@ import cs370.team2.R;
     //changes to denominator can and should be made
     //hell, any other equation will do
     void increaseSpeed(){
-        timeVal = timeVal/ 1.1;
+        if(level == 1) {
+            timeVal -= 500;
+        }
+        else if (level == 2 || level == 3) {
+            timeVal -= 250;
+        }
+        else if (level == 4 || level == 5) {
+            timeVal -=125;
+        }
+        else {
+            timeVal -= 50;
+        }
 
     }
 

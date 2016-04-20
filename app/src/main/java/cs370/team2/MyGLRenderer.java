@@ -35,6 +35,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
     private final float[] mProjectionMatrix = new float[16];
     private Square[] arrSquare= new Square[54];
     private int[] arrSquareVal = new int[54];
+    private static int count = 0;
 
     private float[] b = {.0f,0.0f,0.0f,0.0f};
 
@@ -636,12 +637,22 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         return false;4
     }*/
     public boolean incrementLevel(){
+
         if(score >= testscore){
-            testscore= (int) (testscore*1.3);
-            return true;
+            if(count == 0 || count == 1) {
+                testscore *= 2;
+                count++;
+                return true;
+            }
+            else if (count == 2) {
+                int temp = (1/2)*testscore;
+                testscore *= 2;
+                testscore += temp;
+                count = 0;
+                return true;
+            }
         }
-        else
-            return false;
+        return false;
     }
     public int getScore(){
         return score;
