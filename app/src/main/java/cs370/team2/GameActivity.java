@@ -616,7 +616,7 @@ import cs370.team2.R;
     public void TryAgain(){
     recreate();
     }
-
+//
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
         if ((keyCode == KeyEvent.KEYCODE_BACK))
