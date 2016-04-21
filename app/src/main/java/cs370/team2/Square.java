@@ -15,17 +15,14 @@
  */
 //edited by Matthew Chorney
 
-//package com.example.matthew.testinggl;dont think this works with our project package
+
 package cs370.team2;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
-import java.util.Arrays;
-
 import android.opengl.GLES20;
 
-//import com.example.matthew.testinggl.MyGLRenderer;
 
 /**
  * A two-dimensional square for use as a drawn object in OpenGL ES 2.0.

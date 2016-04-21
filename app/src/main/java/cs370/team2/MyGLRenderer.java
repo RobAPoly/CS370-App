@@ -1,23 +1,12 @@
 package cs370.team2;
 
-import android.content.Context;
-import android.graphics.Point;
+
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Display;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Toast;
-
-import java.util.Arrays;
-
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-import cs370.team2.Square;
 
 
 
@@ -403,28 +392,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
 
         // Set the background frame color
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-        float[] b1 = {.7f,0.8f,0.1f,0.7f};
-        /*
-        arrSquare[1].setColor(b1);
-        arrSquare[8].setColor(b1);
-        arrSquare[13].setColor(b1);
-        arrSquare[21].setColor(b1);
-        arrSquare[31].setColor(b1);
-        arrSquare[40].setColor(b1);
-        arrSquare[50].setColor(b1);
-        arrSquare[51].setColor(b1);
-        arrSquare[52].setColor(b1);
-
-
-        arrSquareVal[1] = 2;
-        arrSquareVal[8] = 2;
-        arrSquareVal[13] = 2;
-        arrSquareVal[21] = 2;
-        arrSquareVal[31] = 2;
-        arrSquareVal[40] = 2;
-        arrSquareVal[50] = 2;
-        arrSquareVal[51] = 2;
-        arrSquareVal[52] = 2; */
     }
 
     @Override
@@ -442,7 +409,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
     @Override
     public void onDrawFrame(GL10 gl) {
         //called on each redraw of the view
-        String resp = "You lost";
 
         int i; //counter for loop (Matthew)
 
@@ -462,14 +428,14 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
 
 
 
-// <--------------------HERE------------
 
 
-    // Added by Eric Horay I did something!
+
+    // Added by Eric
     public void ChangeColor(float x, float y,int h,int w) {
 
 
-        Log.e("This "," IS "+w+" "+h);
+
         int column = 1;
         int row = 1;
         int squareToChange = 0;
@@ -478,17 +444,13 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         float[] b = {.0f, 0.0f, 0.0f, 0.0f};
         float[] b1 = {.7f, 0.8f, 0.1f, 0.7f};
 
-        //this is bad code for testing it doesnt work properly
-        //Eric u can use the the width and height though
-        //i commented out ur previous if statements for testing u can delete mine though
+
         int newx = (int)(x-(w*.0833));
         int newy = (int) (y- (h*.039));
         int neww = (int)(w-(w*.1666));
         int newh = (int)(h-(h*.23));
-        Log.i("new stuff is","IS "+newx +" "+ newy +" "+ neww +" "+ newh);
         if (newx > neww || x < .0833 || newy > newh || y < .039 ){// OUT OF BOUNDS
             inBounds = false;
-            Log.i("OUT", "YOU CLICKED OUT OF BOUNDS."+ this.w+h);
         }
         //Find the x
         if (inBounds) {
@@ -499,14 +461,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
                     // if (x > 835*(w/480)) { //6
                     if(newx>neww*.833){
                         column = 6;
-                        Log.i("6", "Column 6");
                     } else { //5
                         column = 5;
-                        Log.i("5", "Column 5");
                     }
                 } else { //4
                     column = 4;
-                    Log.i("4", "Column 4");
                 }
             }
             //else if (x > 239*(w/1080)) { //2, 3
@@ -514,10 +473,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
                 //if (x > 388*(w/1080)) {//3
                 if(newx > neww*.333){
                     column = 3;
-                    Log.i("3", "Column 3");
                 } else { //2
                     column = 2;
-                    Log.i("2", "Column 2");
                 }
             }
             //if (y > 810*(h/1776)) { //F, G, H, I
@@ -527,19 +484,15 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
                     //if (y > 1254*(h/1776)) { //I
                     if(newy>newh*.888){
                         row = 9;
-                        Log.i("I", "Row I");
                     } else { // H
                         row = 8;
-                        Log.i("H", "Row H");
                     }
                 }
                 // else if (y > 958*(h/1776)) { // G
                 else if(newy>newh*.666){
                     row = 7;
-                    Log.i("G", "Row  G");
                 } else { //F
                     row = 6;
-                    Log.i("F", "Row F");
                 }
             }
             //else if (y > 514*(h/1776)) { //D, E
@@ -547,21 +500,16 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
                 //if (y > 662*(h/1776)) { //E
                 if(newy>newh*.444){
                     row = 5;
-                    Log.i("E", "Row E");
                 } else { //D
                     row = 4;
-                    Log.i("D", "Row D");
                 }
             } //else if (y > 336*(h/1776)) { // C
             else if(newy>newh*.222){
                 row = 3;
-                Log.i("C", "Row C");
             } //else if (y > 218*(h/1776)) { //B
             else if(newy>newh*.111){
                 row = 2;
-                Log.i("B", "Row B");
             } else {
-                Log.i("A", "Row A");
             }
             // Default row 1, A;
 
@@ -591,13 +539,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
                 arrSquare[squareToChange].setState(true);
             }
 
-            // make sure the square is on
-            /*
-            if(Arrays.equals(arrSquare[squareToChange].getColor(), b1)) {
-                arrSquare[squareToChange].setColor(b);
-                score += 100;
-            }
-            */
         }
     }
 
@@ -618,26 +559,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         int error;
         while ((error = GLES20.glGetError()) != GLES20.GL_NO_ERROR) {
 
-            Log.e(TAG, glOperation + ": glError " + error);
             throw new RuntimeException(glOperation + ": glError " + error);
         }
     }
 
-    /* useless
-    public boolean checkColor() {
-        int i;
-        float a[] = { .0f, 0.0f, 0.0f, 0.0f};
-        for (i = 8; i < arrSquare.length; i += 9) {
-            if (arrSquare[i].getColor() != a) {
-                return true;
-            }
-
-
-        }
-        return false;4
-    }*/
     public boolean incrementLevel(){
-
         if(score >= testscore){
             if(count == 0 || count == 1) {
                 testscore *= 2;
@@ -657,13 +583,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
     public int getScore(){
         return score;
     }
-/*
-    public boolean ends(){
-        if (score > 500){
-            return true;
-        }
-        return false;
-    } */
     //TIMER
     void setColorN(int square, float[] a)
     {arrSquare[square].setColor(a);}

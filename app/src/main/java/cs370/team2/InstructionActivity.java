@@ -16,10 +16,6 @@ public class InstructionActivity extends Activity {
 
     }
 
-    public void MainMenu(){
-
-        finish();
-    }
 
     public void Back(View view) {
         finish();
