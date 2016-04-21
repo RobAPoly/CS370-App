@@ -14,7 +14,7 @@ import java.util.Random;
     public class GameActivity extends AppCompatActivity implements MyDialogFragment.Communicator{
     private int level=0;
     //private GLSurfaceView mGLView;
-    private MyGLSurfaceView testing;
+    private MyGLSurfaceView mGLView;
     //#of BEGINNING VALUE FOR EACH COLUMN
     static int col1Val = 0;
     static int col2Val = 9;
@@ -52,8 +52,8 @@ import java.util.Random;
          int height = displaymetrics.heightPixels;
          int width = displaymetrics.widthPixels;
 
-        testing = new MyGLSurfaceView(this);
-        testing.getit(height,width);
+        mGLView= new MyGLSurfaceView(this);
+        mGLView.getit(height, width);
 
         prefs = this.getSharedPreferences("Scores", Context.MODE_PRIVATE);
         editor = prefs.edit();
@@ -62,7 +62,7 @@ import java.util.Random;
         //ignoring its layout Im eric
         // testing on how to combine xml and openGL caleb
         setContentView(R.layout.content_game);
-        testing = (MyGLSurfaceView)findViewById(R.id.glSurfaceViewID);
+        mGLView = (MyGLSurfaceView)findViewById(R.id.glSurfaceViewID);
 
         TextView highScore = (TextView) findViewById(R.id.highScorenum);
         highScore.setText(Integer.toString(prefs.getInt("first",0)));
@@ -99,10 +99,10 @@ import java.util.Random;
                     int moveOne,moveTwo;
 
                     //adds score to high scores if it's high enough
-                    if(testing.getScore()>prefs.getInt("first",0))
+                    if(mGLView.getScore()>prefs.getInt("first",0))
                     {
                         moveOne=prefs.getInt("first",0);
-                        editor.putInt("first",testing.getScore());
+                        editor.putInt("first",mGLView.getScore());
                         moveTwo=prefs.getInt("second",0);
                         editor.putInt("second",moveOne);
                         moveOne=prefs.getInt("third",0);
@@ -111,33 +111,33 @@ import java.util.Random;
                         editor.putInt("fourth",moveOne);
                         editor.putInt("fifth",moveTwo);
                     }
-                    else if(testing.getScore()>prefs.getInt("second",0))
+                    else if(mGLView.getScore()>prefs.getInt("second",0))
                     {
                         moveOne=prefs.getInt("second",0);
-                        editor.putInt("second",testing.getScore());
+                        editor.putInt("second",mGLView.getScore());
                         moveTwo=prefs.getInt("third",0);
                         editor.putInt("third",moveOne);
                         moveOne=prefs.getInt("fourth",0);
                         editor.putInt("fourth",moveTwo);
                         editor.putInt("fifth",moveOne);
                     }
-                    else if(testing.getScore()>prefs.getInt("third",0))
+                    else if(mGLView.getScore()>prefs.getInt("third",0))
                     {
                         moveOne=prefs.getInt("third",0);
-                        editor.putInt("third",testing.getScore());
+                        editor.putInt("third",mGLView.getScore());
                         moveTwo=prefs.getInt("fourth",0);
                         editor.putInt("fourth",moveOne);
                         editor.putInt("fifth",moveTwo);
                     }
-                    else if(testing.getScore()>prefs.getInt("fourth",0))
+                    else if(mGLView.getScore()>prefs.getInt("fourth",0))
                     {
                         moveOne=prefs.getInt("fourth",0);
-                        editor.putInt("fourth",testing.getScore());
+                        editor.putInt("fourth", mGLView.getScore());
                         editor.putInt("fifth",moveOne);
                     }
-                    else if(testing.getScore()>prefs.getInt("fifth",0))
+                    else if(mGLView.getScore()>prefs.getInt("fifth",0))
                     {
-                        editor.putInt("fifth",testing.getScore());
+                        editor.putInt("fifth", mGLView.getScore());
                     }
                     editor.commit();
                     if(!ended)
@@ -163,15 +163,15 @@ import java.util.Random;
                         {e.printStackTrace();}
                         if(i>col1Val) {
                         // if the colored square was pressed, restart the loop
-                        if(!testing.getState(i-1)){
+                        if(!mGLView.getState(i-1)){
 
-                                testing.changeCol(i - 1, b);
+                                mGLView.changeCol(i - 1, b);
                                 // if the square wasnt pressed, set the value of it to 0
-                                testing.setArrVal(i - 1, 0);
+                                mGLView.setArrVal(i - 1, 0);
 
-                                testing.changeCol(i, a);
+                                mGLView.changeCol(i, a);
                                 // the new colored square will be a valued square
-                                testing.setArrVal(i, 2);
+                                mGLView.setArrVal(i, 2);
                                 // if colored square reached last square, end the game
                                 if(i == col1Val+8){
                                     end = true;
@@ -180,7 +180,7 @@ import java.util.Random;
 
                         else {
                             // if the colored square is pressed, set the state back to false
-                            testing.setState(i-1,false);
+                            mGLView.setState(i - 1, false);
                             i = col1Val-1;
                             if(level>oldLevel) {
                                 increaseMax();
@@ -192,9 +192,9 @@ import java.util.Random;
                         }}
                         else
                         {
-                            testing.changeCol(i, a);
+                            mGLView.changeCol(i, a);
                             // the new colored square will be a valued square
-                            testing.setArrVal(i, 2);
+                            mGLView.setArrVal(i, 2);
 
                         }
                     }}}};
@@ -210,14 +210,14 @@ import java.util.Random;
                         {e.printStackTrace();}
                         if(i>col2Val) {
                         // if the colored square was pressed, restart the loop
-                        if(!testing.getState(i-1)){
+                        if(!mGLView.getState(i-1)){
 
-                                testing.changeCol(i - 1, b);
+                                mGLView.changeCol(i - 1, b);
                                 // if the square wasnt pressed, set the value of it to 0
-                                testing.setArrVal(i - 1, 0);
-                                testing.changeCol(i, a);
+                                mGLView.setArrVal(i - 1, 0);
+                                mGLView.changeCol(i, a);
                                 // the new colored square will be a valued square
-                                testing.setArrVal(i, 2);
+                                mGLView.setArrVal(i, 2);
                                 // if colored square reached last square, end the game
                                 if(i == col2Val+8){
                                     end = true;
@@ -226,7 +226,7 @@ import java.util.Random;
 
                         else{
                             // if the colored square is pressed, set the state back to false
-                            testing.setState(i-1,false);
+                            mGLView.setState(i - 1, false);
                             i = col2Val-1;
                             if(level>oldLevel){
                             increaseMax();
@@ -237,9 +237,9 @@ import java.util.Random;
                         }}
                         else
                         {
-                            testing.changeCol(i, a);
+                            mGLView.changeCol(i, a);
                             // the new colored square will be a valued square
-                            testing.setArrVal(i, 2);
+                            mGLView.setArrVal(i, 2);
                         }
                     }}}};
         colThree = new Thread() {
@@ -254,15 +254,15 @@ import java.util.Random;
                         {e.printStackTrace();}
                         if(i>col3Val) {
                         // if the colored square was pressed, restart the loop
-                        if(!testing.getState(i-1)){
+                        if(!mGLView.getState(i-1)){
 
-                                testing.changeCol(i - 1, b);
+                                mGLView.changeCol(i - 1, b);
                                 // if the square wasnt pressed, set the value of it to 0
-                                testing.setArrVal(i - 1, 0);
+                                mGLView.setArrVal(i - 1, 0);
 
-                                testing.changeCol(i, a);
+                                mGLView.changeCol(i, a);
                                 // the new colored square will be a valued square
-                                testing.setArrVal(i, 2);
+                                mGLView.setArrVal(i, 2);
                                 // if colored square reached last square, end the game
                                 if(i == col3Val+8){
                                     end = true;
@@ -271,7 +271,7 @@ import java.util.Random;
 
                         else{
                             // if the colored square is pressed, set the state back to false
-                            testing.setState(i-1,false);
+                            mGLView.setState(i - 1, false);
                             i = col3Val-1;
                             if(level>oldLevel) {
                                 increaseMax();
@@ -282,9 +282,9 @@ import java.util.Random;
                         }}
                         else
                         {
-                            testing.changeCol(i, a);
+                            mGLView.changeCol(i, a);
                             // the new colored square will be a valued square
-                            testing.setArrVal(i, 2);
+                            mGLView.setArrVal(i, 2);
                         }
                     }}}};
         colFour = new Thread() {
@@ -299,15 +299,15 @@ import java.util.Random;
                         {e.printStackTrace();}
                         if(i>col4Val) {
                         // if the colored square was pressed, restart the loop
-                        if(!testing.getState(i-1)){
+                        if(!mGLView.getState(i-1)){
 
-                            testing.changeCol(i - 1, b);
+                            mGLView.changeCol(i - 1, b);
                             // if the square wasnt pressed, set the value of it to 0
-                            testing.setArrVal(i - 1, 0);
+                            mGLView.setArrVal(i - 1, 0);
 
-                            testing.changeCol(i, a);
+                            mGLView.changeCol(i, a);
                             // the new colored square will be a valued square
-                            testing.setArrVal(i, 2);
+                            mGLView.setArrVal(i, 2);
                             // if colored square reached last square, end the game
                             if(i == col4Val+8){
                                 end = true;
@@ -316,7 +316,7 @@ import java.util.Random;
 
                     else{
                             // if the colored square is pressed, set the state back to false
-                            testing.setState(i-1,false);
+                            mGLView.setState(i - 1, false);
                             i = col4Val-1;
                             if(level>oldLevel) {
                                 increaseMax();
@@ -327,9 +327,9 @@ import java.util.Random;
                         }}
                         else
                         {
-                            testing.changeCol(i, a);
+                            mGLView.changeCol(i, a);
                             // the new colored square will be a valued square
-                            testing.setArrVal(i, 2);
+                            mGLView.setArrVal(i, 2);
                         }
                     }}}};
         colFive = new Thread() {
@@ -344,15 +344,15 @@ import java.util.Random;
                         {e.printStackTrace();}
                         if(i>col5Val) {
                         // if the colored square was pressed, restart the loop
-                        if(!testing.getState(i-1)){
+                        if(!mGLView.getState(i-1)){
 
-                                testing.changeCol(i - 1, b);
+                                mGLView.changeCol(i - 1, b);
                                 // if the square wasnt pressed, set the value of it to 0
-                                testing.setArrVal(i - 1, 0);
+                                mGLView.setArrVal(i - 1, 0);
 
-                                testing.changeCol(i, a);
+                                mGLView.changeCol(i, a);
                                 // the new colored square will be a valued square
-                                testing.setArrVal(i, 2);
+                                mGLView.setArrVal(i, 2);
                                 // if colored square reached last square, end the game
                                 if(i == col5Val+8){
                                     end = true;
@@ -361,7 +361,7 @@ import java.util.Random;
 
                         else{
                             // if the colored square is pressed, set the state back to false
-                            testing.setState(i-1,false);
+                            mGLView.setState(i - 1, false);
                             i = col5Val-1;
                             if(level>oldLevel) {
                                 increaseMax();
@@ -372,9 +372,9 @@ import java.util.Random;
                         }}
                         else
                         {
-                            testing.changeCol(i, a);
+                            mGLView.changeCol(i, a);
                             // the new colored square will be a valued square
-                            testing.setArrVal(i, 2);
+                            mGLView.setArrVal(i, 2);
                             i = col5Val;
                         }
                     }}}};
@@ -390,15 +390,15 @@ import java.util.Random;
                         {e.printStackTrace();}
                         if(i>col6Val) {
                         // if the colored square was pressed, restart the loop
-                        if(!testing.getState(i-1)){
+                        if(!mGLView.getState(i-1)){
 
-                                testing.changeCol(i - 1, b);
+                                mGLView.changeCol(i - 1, b);
                                 // if the square wasnt pressed, set the value of it to 0
-                                testing.setArrVal(i - 1, 0);
+                                mGLView.setArrVal(i - 1, 0);
 
-                                testing.changeCol(i, a);
+                                mGLView.changeCol(i, a);
                                 // the new colored square will be a valued square
-                                testing.setArrVal(i, 2);
+                                mGLView.setArrVal(i, 2);
                                 // if colored square reached last square, end the game
                                 if(i == col6Val+8){
                                     end = true;
@@ -407,7 +407,7 @@ import java.util.Random;
 
                         else{
                             // if the colored square is pressed, set the state back to fals
-                            testing.setState(i-1,false);
+                            mGLView.setState(i - 1, false);
                             i = col6Val-1;
                             if(level>oldLevel) {
                                 increaseMax();
@@ -418,9 +418,9 @@ import java.util.Random;
                         }}
                         else
                         {
-                            testing.changeCol(i, a);
+                            mGLView.changeCol(i, a);
                             // the new colored square will be a valued square
-                            testing.setArrVal(i, 2);
+                            mGLView.setArrVal(i, 2);
                         }
                     }}}};
        colOne.start();
@@ -494,7 +494,7 @@ import java.util.Random;
 
     public void updateLevelNumber(int ex){
         TextView textView = (TextView) findViewById(R.id.levelnum);
-        if(testing.incrementLevel()){
+        if(mGLView.incrementLevel()){
             level++;
 
         }
@@ -504,7 +504,7 @@ import java.util.Random;
 
     public void updateScore(){
         TextView textView = (TextView) findViewById(R.id.score);
-        textView.setText(Integer.toString(testing.getScore()));
+        textView.setText(Integer.toString(mGLView.getScore()));
 
     }
     // dialog fragment functions
