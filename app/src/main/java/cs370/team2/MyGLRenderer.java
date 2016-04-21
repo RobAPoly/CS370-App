@@ -26,16 +26,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
     private int[] arrSquareVal = new int[54];
     private static int count = 0;
 
-    private float[] b = {.0f,0.0f,0.0f,0.0f};
-
-    private float[] b2 = {1f,0.8f,0.1f,0.7f};
-    private float[] b3 = {.7f,1f,0.1f,0.7f};
-    private float[] b4 = {.7f,0.8f,1f,0.7f};
-    private float[] b5 = {1f,0.8f,1f,0.7f};
-    private float[] b6 = {1f,1f,0.1f,0.7f};
-    private float[] b7 = {.7f,.1f,1f,0.7f};
-    private float[] b8 = {1f,1f,1f,0.7f};
-
     public int c = 0;
     private int h,w=0;
     //squares are .2 by .2 (Matthew)
