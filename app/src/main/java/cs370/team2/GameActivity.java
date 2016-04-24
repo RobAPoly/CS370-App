@@ -23,6 +23,7 @@ import java.util.Random;
     static int col5Val = 36;
     static int col6Val = 45;
     //ThreadGroup squareGroup;
+    boolean activeArr[] = new boolean[6];
     Thread colOne;
     Thread colTwo;
     Thread colThree;
@@ -34,7 +35,6 @@ import java.util.Random;
     Random rand = new Random();
     double timeVal = 2000;
     boolean end = false;
-    int sqMax = 3;
     int oldLevel=0;
     boolean ended=false;
     final static DialogFragment myFragment = new MyDialogFragment();
@@ -86,10 +86,6 @@ import java.util.Random;
 
                                 updateLevelNumber(level);
                                 updateScore();
-
-
-
-
                                 }
 
                         });
@@ -183,7 +179,7 @@ import java.util.Random;
                             mGLView.setState(i - 1, false);
                             i = col1Val-1;
                             if(level>oldLevel) {
-                                increaseMax();
+                                startSQThread();
                                 increaseSpeed();
                                 oldLevel++;
 
@@ -229,7 +225,7 @@ import java.util.Random;
                             mGLView.setState(i - 1, false);
                             i = col2Val-1;
                             if(level>oldLevel){
-                            increaseMax();
+                            startSQThread();
                             increaseSpeed();
                                 oldLevel++;
                             }
@@ -274,7 +270,7 @@ import java.util.Random;
                             mGLView.setState(i - 1, false);
                             i = col3Val-1;
                             if(level>oldLevel) {
-                                increaseMax();
+                                startSQThread();
                                 increaseSpeed();
                                 oldLevel++;
                             }
@@ -319,7 +315,7 @@ import java.util.Random;
                             mGLView.setState(i - 1, false);
                             i = col4Val-1;
                             if(level>oldLevel) {
-                                increaseMax();
+                                startSQThread();
                                 increaseSpeed();
                                 oldLevel++;
                             }
@@ -364,7 +360,7 @@ import java.util.Random;
                             mGLView.setState(i - 1, false);
                             i = col5Val-1;
                             if(level>oldLevel) {
-                                increaseMax();
+                                startSQThread();
                                 increaseSpeed();
                                 oldLevel++;
                             }
@@ -410,7 +406,7 @@ import java.util.Random;
                             mGLView.setState(i - 1, false);
                             i = col6Val-1;
                             if(level>oldLevel) {
-                                increaseMax();
+                                startSQThread();
                                 increaseSpeed();
                                 oldLevel++;
                             }
@@ -430,46 +426,52 @@ import java.util.Random;
     //Call this method to begin anew block once
     //an old block is destroyed along with its timer
     void startSQThread()
-    {int current = activeCount();
-        int randVal= rand.nextInt(6)+1;
-        if (current < sqMax) {
-            if (randVal == 1 && !colOne.isAlive()) {
-                colOne.start();
+    {   int randVal = 0;//= rand.nextInt(6)+1;
+        int acOld = activeCount();
+            if (acOld < 6) {
+                randVal = rand.nextInt(6);
+                while (activeArr[randVal])
+                {
+                    randVal++;
+                    if (randVal == 6)
+                        randVal = 0;
+                }
+                    chooseThread(randVal);
             }
-            else if (randVal == 2 && !colTwo.isAlive())
-                colTwo.start();
-            else if (randVal == 3 && !colThree.isAlive())
-                colThree.start();
-            else if (randVal == 4 && !colFour.isAlive())
-                colFour.start();
-            else if (randVal == 5 && !colFive.isAlive())
-                colFive.start();
-            else if(!colSix.isAlive())
-                colSix.start();
-        }
+    }
+
+    void chooseThread(int tNum)
+    {
+        if (tNum == 0)
+            colOne.start();
+        else if (tNum == 1 )
+            colTwo.start();
+        else if (tNum == 2 )
+            colThree.start();
+        else if (tNum == 3 )
+            colFour.start();
+        else if (tNum == 4 )
+            colFive.start();
+        else
+            colSix.start();
     }
 
     //used in sq thread
     int activeCount()
     {   int onSq = 0;
         if(colOne.isAlive())
-            onSq++;
+        { onSq++; activeArr[0] = true;}
         if(colTwo.isAlive())
-            onSq++;
+        {   onSq++;activeArr[1] = true;}
         if(colThree.isAlive())
-            onSq++;
+        {   onSq++;activeArr[2] = true;}
         if(colFour.isAlive())
-            onSq++;
+        {   onSq++;activeArr[3] = true;}
         if(colFive.isAlive())
-            onSq++;
+        {   onSq++;activeArr[4] = true;}
+        if(colSix.isAlive())
+        {   onSq++;activeArr[5] = true;}
         return onSq;
-    }
-
-    //Checks score and increases max accordingly
-    void increaseMax()
-    {for(int i = activeCount(); i<level % 200 && sqMax != 6; i++ ) {sqMax++; }
-        if(activeCount() < sqMax )
-            startSQThread();
     }
 
     //increase speed of squares by making sleep time less
@@ -477,17 +479,18 @@ import java.util.Random;
     //changes to denominator can and should be made
     //hell, any other equation will do
     void increaseSpeed(){
+
         if(level == 1) {
-            timeVal -= 500;
+            timeVal -= 525;
         }
         else if (level == 2 || level == 3) {
-            timeVal -= 250;
+            timeVal -= 275;
         }
         else if (level == 4 || level == 5) {
-            timeVal -=125;
+            timeVal -=150;
         }
         else {
-            timeVal -= 50;
+            timeVal -= 100;
         }
 
     }
