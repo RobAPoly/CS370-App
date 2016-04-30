@@ -481,16 +481,16 @@ import java.util.Random;
     void increaseSpeed(){
 
         if(level == 1) {
-            timeVal -= 525;
+        timeVal *= (3.0/4.0);
         }
         else if (level == 2 || level == 3) {
-            timeVal -= 275;
+         timeVal *= (5.0/6.0);
         }
         else if (level == 4 || level == 5) {
-            timeVal -=150;
+        timeVal *= (7.0/8.0);
         }
         else {
-            timeVal -= 75;
+        timeVal *= (9.0/10.0);
         }
 
     }
